@@ -42,6 +42,10 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
         clearTimeout(delayTimeoutRef.current);
         delayTimeoutRef.current = null;
       }
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = null;
+      }
     };
   }, [delay, hasStarted]);
 
@@ -52,8 +56,9 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          setCurrentIndex(currentIndex + 1);
-          setDisplayText(text.slice(0, currentIndex + 1));
+          const newIndex = currentIndex + 1;
+          setCurrentIndex(newIndex);
+          setDisplayText(text.slice(0, newIndex));
         }
       }, speed);
 
