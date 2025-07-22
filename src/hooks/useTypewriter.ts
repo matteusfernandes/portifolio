@@ -17,9 +17,10 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const [isComplete, setIsComplete] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   
-  // Use refs to track if component is mounted and timeout
+  // Use separate refs for different timeouts to avoid race conditions
   const isMountedRef = useRef(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Set mounted state on component mount
   useEffect(() => {
@@ -27,9 +28,13 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     
     return () => {
       isMountedRef.current = false;
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
+      if (delayTimeoutRef.current) {
+        clearTimeout(delayTimeoutRef.current);
+        delayTimeoutRef.current = null;
+      }
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = null;
       }
     };
   }, []);
@@ -37,16 +42,16 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   // Effect for initial delay
   useEffect(() => {
     if (delay > 0 && !hasStarted && isMountedRef.current) {
-      timeoutRef.current = setTimeout(() => {
+      delayTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
           setHasStarted(true);
         }
       }, delay);
       
       return () => {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-          timeoutRef.current = null;
+        if (delayTimeoutRef.current) {
+          clearTimeout(delayTimeoutRef.current);
+          delayTimeoutRef.current = null;
         }
       };
     } else if (delay === 0 && !hasStarted) {
@@ -59,17 +64,21 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (!isMountedRef.current) return;
 
     if (hasStarted && currentIndex < text.length && !isComplete) {
-      timeoutRef.current = setTimeout(() => {
+      typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          setDisplayText(text.slice(0, currentIndex + 1));
-          setCurrentIndex(prev => prev + 1);
+          // Use functional updates consistently to avoid stale closure issues
+          setCurrentIndex(prevIndex => {
+            const nextIndex = prevIndex + 1;
+            setDisplayText(() => text.slice(0, nextIndex));
+            return nextIndex;
+          });
         }
       }, speed);
 
       return () => {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-          timeoutRef.current = null;
+        if (typingTimeoutRef.current) {
+          clearTimeout(typingTimeoutRef.current);
+          typingTimeoutRef.current = null;
         }
       };
     } else if (hasStarted && currentIndex === text.length && !isComplete) {
