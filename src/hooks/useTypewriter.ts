@@ -17,12 +17,12 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const [isComplete, setIsComplete] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   
-  // Use separate refs for delay and typing timeouts to prevent operations from interfering with each other.
+  // Separate refs to manage delay and typing timeouts independently
   const isMountedRef = useRef(false);
   const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Initialize mounting state and handle initial delay
+  // Track component mount state to prevent state updates after unmount
   useEffect(() => {
     isMountedRef.current = true;
     
@@ -52,9 +52,8 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          const nextIndex = currentIndex + 1;
-          setCurrentIndex(nextIndex);
-          setDisplayText(text.slice(0, nextIndex));
+          setCurrentIndex(currentIndex + 1);
+          setDisplayText(text.slice(0, currentIndex + 1));
         }
       }, speed);
 
