@@ -1,0 +1,286 @@
+@import 'tailwindcss';
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+	--primary: #1e1e3f;
+	--secondary: #2d2d5f;
+	--accent: #ff7a00;
+	--purple: #5b52ff;
+	--aqua-green: #4cc7b1;
+	--soft-pink: #f29ca5;
+	--dark-blue: #011627;
+	--light-gray: #607b96;
+	--gradient-start: #121626;
+	--gradient-end: #42518c;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-primary: var(--primary);
+	--color-secondary: var(--secondary);
+	--color-accent: var(--accent);
+	--color-purple: var(--purple);
+	--color-aqua-green: var(--aqua-green);
+	--color-soft-pink: var(--soft-pink);
+	--color-dark-blue: var(--dark-blue);
+	--color-light-gray: var(--light-gray);
+	--color-gradient-start: var(--gradient-start);
+	--color-gradient-end: var(--gradient-end);
+	--font-sans: var(--font-fira-code);
+	--font-mono: var(--font-fira-code);
+	--gradient-main: linear-gradient(75.29deg, #121626 56.9%, #42518c 144.84%);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-fira-code), 'Fira Code', monospace;
+}
+
+/* Layout da página principal */
+.page-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Aplicar Fira Code em todos os elementos */
+* {
+	font-family: var(--font-fira-code), 'Fira Code', monospace;
+}
+
+/* Classe customizada para o gradiente */
+.bg-gradient-main {
+	background: linear-gradient(75.29deg, #121626 56.9%, #42518c 144.84%);
+}
+
+/* Tipografia específica para o nome Matteus Fernandes */
+.name-typography {
+	font-family: 'Fira Code', monospace;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 113.64px;
+	line-height: 100%;
+	letter-spacing: 0%;
+}
+
+.name-typography div {
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.name-typography .second-line {
+	margin-left: -10px;
+	letter-spacing: -0.5px;
+}
+
+/* Tipografia específica para o subtítulo "> Desenvolvedor Full Stack" */
+.subtitle-typography {
+	font-family: 'Fira Code', monospace;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 37.24px;
+	line-height: 100%;
+	letter-spacing: 0%;
+}
+
+/* Tipografia específica para o tech stack comment */
+.tech-stack-typography {
+	font-family: 'Fira Code', monospace;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 100%;
+	margin-top: 120px;
+}
+
+/* Tipografia específica para o code snippet */
+.code-snippet-typography {
+	font-family: 'Fira Code', monospace;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 100%;
+	letter-spacing: 0%;
+}
+
+/* Layout específico para o container main */
+.main-container-layout {
+	width: 614px;
+	height: 449px;
+	position: absolute;
+	top: 191px;
+	left: 134px;
+	opacity: 1;
+	transform: rotate(0deg);
+}
+
+/* Layout específico para o footer */
+.footer-layout {
+	width: 100%;
+	height: 46px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	opacity: 1;
+	transform: rotate(0deg);
+	border-top: 0.5px solid #ffffff33;
+	backdrop-filter: blur(10px);
+	margin-top: auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+/* Responsividade para o nome */
+@media (max-width: 768px) {
+	.name-typography {
+		font-size: 60px;
+	}
+	.subtitle-typography {
+		font-size: 24px;
+	}
+	.tech-stack-typography {
+		font-size: 14px;
+	}
+	.code-snippet-typography {
+		font-size: 12px;
+	}
+	.main-container-layout {
+		width: 90%;
+		height: auto;
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 2rem auto;
+		padding: 1rem;
+	}
+	.footer-layout {
+		width: 100%;
+		height: 46px;
+		position: relative;
+		bottom: 0;
+		left: 0;
+		border-top: 0.5px solid #ffffff33;
+		backdrop-filter: blur(10px);
+		margin-top: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 480px) {
+	.name-typography {
+		font-size: 40px;
+	}
+	.subtitle-typography {
+		font-size: 18px;
+	}
+	.tech-stack-typography {
+		font-size: 12px;
+	}
+	.code-snippet-typography {
+		font-size: 10px;
+	}
+	.main-container-layout {
+		width: 95%;
+		height: auto;
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 1rem auto;
+		padding: 0.5rem;
+	}
+	.footer-layout {
+		width: 100%;
+		height: 46px;
+		position: relative;
+		bottom: 0;
+		left: 0;
+		border-top: 0.5px solid #ffffff33;
+		backdrop-filter: blur(10px);
+		margin-top: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+}
+
+/* Estilos para bordas entre elementos do footer */
+.footer-layout .footer-section {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+	border-right: 1px solid #ffffff33;
+}
+
+.footer-layout .footer-section.social-links {
+	padding: 0;
+}
+
+.footer-layout .social-icon {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 15px;
+	border-right: 1px solid #ffffff33;
+	transition: background-color 0.2s ease;
+}
+
+.footer-layout .social-icon:last-child {
+	border-right: none;
+}
+
+.footer-layout .social-icon a {
+	color: #607b96;
+	transition: color 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer-layout .social-icon a:hover {
+	color: #ffffff;
+}
+
+/* Estilos para navegação com bordas */
+.nav-section {
+	transition: background-color 0.2s ease;
+}
+
+.nav-section:hover {
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Tipografia específica para navegação */
+.nav-typography {
+	font-family: 'Fira Code', monospace;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 15px;
+	line-height: 100%;
+	letter-spacing: 0%;
+}
+
+/* Borda inferior para item ativo da navegação */
+.border-b-5 {
+	border-bottom-width: 5px;
+	border-bottom-style: solid;
+}
