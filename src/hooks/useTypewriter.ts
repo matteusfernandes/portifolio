@@ -17,7 +17,7 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const [isComplete, setIsComplete] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   
-  // Use separate refs for different timeouts to avoid race conditions
+  // Use separate refs for delay and typing timeouts to prevent interference between operations
   const isMountedRef = useRef(false);
   const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -58,12 +58,9 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          // Update state based on previous state using functional form
-          setCurrentIndex(prevIndex => {
-            const nextIndex = prevIndex + 1;
-            setDisplayText(text.slice(0, nextIndex));
-            return nextIndex;
-          });
+          const nextIndex = currentIndex + 1;
+          setCurrentIndex(nextIndex);
+          setDisplayText(text.slice(0, nextIndex));
         }
       }, speed);
 
