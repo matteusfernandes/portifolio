@@ -12,7 +12,7 @@
 Se você descobrir uma vulnerabilidade de segurança, por favor, nos informe de forma responsável:
 
 1. **NÃO** crie uma issue pública
-2. Envie um email para: contato@matteusfernandes.com
+2. Envie um email para: matteus_gbi@hotmail.com
 3. Inclua uma descrição detalhada da vulnerabilidade
 4. Aguarde uma resposta em até 48 horas
 

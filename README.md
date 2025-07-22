@@ -116,7 +116,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📞 Contato
 
-- **Email**: contato@matteusfernandes.com
+- **Email**: matteus_gbi@hotmail.com
 - **LinkedIn**: [linkedin.com/in/matteusfernandes](https://linkedin.com/in/matteusfernandes)
 - **GitHub**: [github.com/matteusfernandes](https://github.com/matteusfernandes)
 
