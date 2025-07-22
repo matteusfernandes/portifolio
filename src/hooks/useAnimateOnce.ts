@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface UseAnimateOnceOptions {
   animationClass: string;
@@ -22,17 +22,30 @@ export const useAnimateOnce = ({
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const cleanup = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     if (trigger && !hasAnimated) {
-      const timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setShouldAnimate(true);
         setHasAnimated(true);
       }, delay);
 
-      return () => clearTimeout(timer);
+      return cleanup;
     }
-  }, [trigger, hasAnimated, delay]);
+  }, [trigger, hasAnimated, delay, cleanup]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return cleanup;
+  }, [cleanup]);
 
   const className = shouldAnimate ? animationClass : '';
 

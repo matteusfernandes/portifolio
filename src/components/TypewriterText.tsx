@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { useTypewriter } from '@/hooks/useTypewriter';
 
 interface TypewriterTextProps {
@@ -10,7 +11,7 @@ interface TypewriterTextProps {
   showCursor?: boolean;
 }
 
-export const TypewriterText = ({ 
+export const TypewriterText = memo(({ 
   text, 
   speed = 50, 
   delay = 0, 
@@ -30,4 +31,6 @@ export const TypewriterText = ({
       )}
     </span>
   );
-};
+});
+
+TypewriterText.displayName = 'TypewriterText';

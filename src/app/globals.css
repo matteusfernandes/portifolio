@@ -342,6 +342,12 @@ body {
   animation-fill-mode: both;
 }
 
+/* Specific class for code snippet to ensure it stays visible */
+.animate-fade-in-up.code-snippet-container {
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-fill-mode: forwards;
+}
+
 .animate-slide-in-left {
   opacity: 0;
   animation: slideInLeft 0.8s ease-out forwards;

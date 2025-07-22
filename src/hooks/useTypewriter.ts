@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface UseTypewriterOptions {
   text: string;
@@ -16,30 +16,59 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  
+  // Use refs to track if component is mounted
+  const isMountedRef = useRef(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Cleanup function
+  const cleanup = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }, []);
+
+  // Effect for initial delay
   useEffect(() => {
-    if (delay > 0 && !hasStarted) {
-      const delayTimeout = setTimeout(() => {
-        setHasStarted(true);
+    if (delay > 0 && !hasStarted && isMountedRef.current) {
+      timeoutRef.current = setTimeout(() => {
+        if (isMountedRef.current) {
+          setHasStarted(true);
+        }
       }, delay);
-      return () => clearTimeout(delayTimeout);
+      
+      return cleanup;
     } else if (delay === 0 && !hasStarted) {
       setHasStarted(true);
     }
-  }, [delay, hasStarted]);
+  }, [delay, hasStarted, cleanup]);
 
+  // Effect for typing animation
   useEffect(() => {
+    if (!isMountedRef.current) return;
+
     if (hasStarted && currentIndex < text.length && !isComplete) {
-      const timeout = setTimeout(() => {
-        setDisplayText(text.slice(0, currentIndex + 1));
-        setCurrentIndex(currentIndex + 1);
+      timeoutRef.current = setTimeout(() => {
+        if (isMountedRef.current) {
+          setDisplayText(text.slice(0, currentIndex + 1));
+          setCurrentIndex(prev => prev + 1);
+        }
       }, speed);
 
-      return () => clearTimeout(timeout);
+      return cleanup;
     } else if (hasStarted && currentIndex === text.length && !isComplete) {
       setIsComplete(true);
     }
-  }, [currentIndex, text, speed, hasStarted, isComplete]);
+  }, [currentIndex, text, speed, hasStarted, isComplete, cleanup]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      cleanup();
+    };
+  }, [cleanup]);
 
   return { displayText, isComplete };
 };
