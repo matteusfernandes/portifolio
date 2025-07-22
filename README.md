@@ -27,7 +27,7 @@ Um portfólio moderno e responsivo desenvolvido com Next.js 15, Tailwind CSS v4 
 
 ### Pré-requisitos
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn ou pnpm
 
 ### Instalação
@@ -67,7 +67,7 @@ src/
 ### Tipografia
 
 - **Nome**: `Fira Code 113.64px` - Display principal
-- **Navegação**: `Fira Code 15px` - Links de navegação  
+- **Navegação**: `Fira Code 15px` - Links de navegação
 - **Subtítulo**: `Fira Code 18px` - Textos secundários
 - **Código**: `Fira Code 14px` - Snippets de código
 
@@ -75,8 +75,8 @@ src/
 
 ```css
 :root {
-  --text-primary: #8896B0;
-  --accent-orange: #F4B460;
+  --text-primary: #8896b0;
+  --accent-orange: #f4b460;
   --accent-purple: #5b52ff;
   --accent-teal: #4cc7b1;
   --accent-pink: #f29ca5;

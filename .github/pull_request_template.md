@@ -22,9 +22,9 @@ Closes #(número da issue)
 
 Passos para testar as mudanças:
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## 📱 Screenshots
 
