@@ -26,16 +26,6 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   useEffect(() => {
     isMountedRef.current = true;
     
-    if (delay > 0 && !hasStarted) {
-      delayTimeoutRef.current = setTimeout(() => {
-        if (isMountedRef.current) {
-          setHasStarted(true);
-        }
-      }, delay);
-    } else if (delay === 0 && !hasStarted) {
-      setHasStarted(true);
-    }
-    
     return () => {
       isMountedRef.current = false;
       if (delayTimeoutRef.current) {
@@ -47,6 +37,19 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
         typingTimeoutRef.current = null;
       }
     };
+  }, []);
+
+  // Handle delay before starting the typing animation
+  useEffect(() => {
+    if (delay > 0 && !hasStarted) {
+      delayTimeoutRef.current = setTimeout(() => {
+        if (isMountedRef.current) {
+          setHasStarted(true);
+        }
+      }, delay);
+    } else if (delay === 0 && !hasStarted) {
+      setHasStarted(true);
+    }
   }, [delay, hasStarted]);
 
   // Effect for typing animation
@@ -56,9 +59,8 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          const newIndex = currentIndex + 1;
-          setCurrentIndex(newIndex);
-          setDisplayText(text.slice(0, newIndex));
+          setCurrentIndex(currentIndex + 1);
+          setDisplayText(text.slice(0, currentIndex + 1));
         }
       }, speed);
 
