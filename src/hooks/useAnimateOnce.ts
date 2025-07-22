@@ -40,16 +40,6 @@ export const useAnimateOnce = ({
     }
   }, [trigger, hasAnimated, delay]);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, []);
-
   const className = shouldAnimate ? animationClass : '';
 
   return { className, elementRef, hasAnimated };

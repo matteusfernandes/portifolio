@@ -22,33 +22,27 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Initialize mounting state
+  // Initialize mounting state and handle initial delay
   useEffect(() => {
     isMountedRef.current = true;
     
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
-
-  // Effect for initial delay
-  useEffect(() => {
-    if (delay > 0 && !hasStarted && isMountedRef.current) {
+    if (delay > 0 && !hasStarted) {
       delayTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
           setHasStarted(true);
         }
       }, delay);
-      
-      return () => {
-        if (delayTimeoutRef.current) {
-          clearTimeout(delayTimeoutRef.current);
-          delayTimeoutRef.current = null;
-        }
-      };
     } else if (delay === 0 && !hasStarted) {
       setHasStarted(true);
     }
+    
+    return () => {
+      isMountedRef.current = false;
+      if (delayTimeoutRef.current) {
+        clearTimeout(delayTimeoutRef.current);
+        delayTimeoutRef.current = null;
+      }
+    };
   }, [delay, hasStarted]);
 
   // Effect for typing animation
