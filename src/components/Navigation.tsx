@@ -30,15 +30,15 @@ const Navigation = () => {
           </span>
         </div>
 
-        {navItems.slice(0, 3).map(item => (
+        {navItems.slice(0, 3).map((item) => (
           <div
             key={item.label}
-            className={`nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20 ${
+            className={`nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20 transition-all duration-300 ${
               activeItem === item.label ? 'border-b-5' : ''
             }`}
-            style={
-              activeItem === item.label ? { borderBottomColor: '#F4B460' } : {}
-            }
+            style={{
+              ...(activeItem === item.label ? { borderBottomColor: '#F4B460' } : {})
+            }}
           >
             <a
               href={item.href}
@@ -58,14 +58,15 @@ const Navigation = () => {
 
       <div className="flex items-center h-full">
         <div
-          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 ${
+          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up ${
             activeItem === navItems[3].label ? 'border-b-5' : ''
           }`}
-          style={
-            activeItem === navItems[3].label
+          style={{
+            ...(activeItem === navItems[3].label
               ? { borderBottomColor: '#F4B460' }
-              : {}
-          }
+              : {}),
+            animationDelay: '600ms'
+          }}
         >
           <a
             href={navItems[3].href}

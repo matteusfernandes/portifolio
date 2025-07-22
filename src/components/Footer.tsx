@@ -53,13 +53,17 @@ const Footer = () => {
         <span className="text-light-gray font-mono text-sm">_minhas-redes</span>
       </div>
       <div className="footer-section social-links">
-        {socialLinks.map(link => (
-          <div key={link.name} className="social-icon">
+        {socialLinks.map((link) => (
+          <div 
+            key={link.name} 
+            className="social-icon"
+          >
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.name}
+              className="transition-all duration-200 hover:scale-110 hover:text-accent-orange"
             >
               {link.icon}
             </a>
