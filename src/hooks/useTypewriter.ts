@@ -22,31 +22,33 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Effect for initial delay with mounting logic
+  // Initialize mounting state
   useEffect(() => {
     isMountedRef.current = true;
     
-    if (delay > 0 && !hasStarted) {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  // Effect for initial delay
+  useEffect(() => {
+    if (delay > 0 && !hasStarted && isMountedRef.current) {
       delayTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
           setHasStarted(true);
         }
       }, delay);
+      
+      return () => {
+        if (delayTimeoutRef.current) {
+          clearTimeout(delayTimeoutRef.current);
+          delayTimeoutRef.current = null;
+        }
+      };
     } else if (delay === 0 && !hasStarted) {
       setHasStarted(true);
     }
-    
-    return () => {
-      isMountedRef.current = false;
-      if (delayTimeoutRef.current) {
-        clearTimeout(delayTimeoutRef.current);
-        delayTimeoutRef.current = null;
-      }
-      if (typingTimeoutRef.current) {
-        clearTimeout(typingTimeoutRef.current);
-        typingTimeoutRef.current = null;
-      }
-    };
   }, [delay, hasStarted]);
 
   // Effect for typing animation
@@ -56,7 +58,7 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          // Use direct state update since we're not updating based on previous state
+          // Update state based on previous state using functional form
           setCurrentIndex(prevIndex => {
             const nextIndex = prevIndex + 1;
             setDisplayText(text.slice(0, nextIndex));
