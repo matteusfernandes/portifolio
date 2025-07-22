@@ -22,9 +22,19 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
   const delayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Set mounted state on component mount
+  // Effect for initial delay with mounting logic
   useEffect(() => {
     isMountedRef.current = true;
+    
+    if (delay > 0 && !hasStarted) {
+      delayTimeoutRef.current = setTimeout(() => {
+        if (isMountedRef.current) {
+          setHasStarted(true);
+        }
+      }, delay);
+    } else if (delay === 0 && !hasStarted) {
+      setHasStarted(true);
+    }
     
     return () => {
       isMountedRef.current = false;
@@ -37,26 +47,6 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
         typingTimeoutRef.current = null;
       }
     };
-  }, []);
-
-  // Effect for initial delay
-  useEffect(() => {
-    if (delay > 0 && !hasStarted && isMountedRef.current) {
-      delayTimeoutRef.current = setTimeout(() => {
-        if (isMountedRef.current) {
-          setHasStarted(true);
-        }
-      }, delay);
-      
-      return () => {
-        if (delayTimeoutRef.current) {
-          clearTimeout(delayTimeoutRef.current);
-          delayTimeoutRef.current = null;
-        }
-      };
-    } else if (delay === 0 && !hasStarted) {
-      setHasStarted(true);
-    }
   }, [delay, hasStarted]);
 
   // Effect for typing animation
@@ -66,10 +56,10 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          // Use functional updates consistently to avoid stale closure issues
+          // Use direct state update since we're not updating based on previous state
           setCurrentIndex(prevIndex => {
             const nextIndex = prevIndex + 1;
-            setDisplayText(() => text.slice(0, nextIndex));
+            setDisplayText(text.slice(0, nextIndex));
             return nextIndex;
           });
         }

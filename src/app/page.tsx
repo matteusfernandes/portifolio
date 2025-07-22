@@ -61,7 +61,7 @@ export default function Home() {
 
           {/* Code snippet */}
           <AnimatedElement animation="fade-in-up" delay={2500}>
-            <div className="inline-block code-snippet-container">
+            <div className="inline-block">
               <p className="code-snippet-typography">
                 <span className="text-purple">const</span>{' '}
                 <span className="text-aqua-green">githubLink</span>{' '}
