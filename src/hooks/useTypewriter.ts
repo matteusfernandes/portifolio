@@ -58,8 +58,9 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOpti
     if (hasStarted && currentIndex < text.length && !isComplete) {
       typingTimeoutRef.current = setTimeout(() => {
         if (isMountedRef.current) {
-          setCurrentIndex(currentIndex + 1);
-          setDisplayText(text.slice(0, currentIndex + 1));
+          const nextIndex = currentIndex + 1;
+          setCurrentIndex(nextIndex);
+          setDisplayText(text.slice(0, nextIndex));
         }
       }, speed);
 
