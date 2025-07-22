@@ -22,15 +22,21 @@ export const useAnimateOnce = ({
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (trigger && !hasAnimated) {
-      const timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setShouldAnimate(true);
         setHasAnimated(true);
       }, delay);
 
-      return () => clearTimeout(timer);
+      return () => {
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+          timerRef.current = null;
+        }
+      };
     }
   }, [trigger, hasAnimated, delay]);
 

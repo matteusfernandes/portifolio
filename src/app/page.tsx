@@ -71,6 +71,7 @@ export default function Home() {
                     text='"https://github.com/matteusfernandes"'
                     speed={30}
                     delay={6000}
+                    showCursor={false}
                   />
                 </span>
               </p>
