@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 
 interface NavItem {
   label: string;
@@ -9,7 +9,12 @@ interface NavItem {
 }
 
 const Navigation = () => {
-  const [activeItem, setActiveItem] = useState('_hello');
+  const [activeItem, setActiveItem] = useState<string>('_hello');
+
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, label: string) => {
+    e.preventDefault();
+    setActiveItem(label);
+  };
 
   const navItems: NavItem[] = [
     { label: '_hello', href: '#', active: true },
@@ -42,7 +47,7 @@ const Navigation = () => {
           >
             <a
               href={item.href}
-              onClick={() => setActiveItem(item.label)}
+              onClick={(e) => handleNavClick(e, item.label)}
               className={`nav-typography transition-colors duration-200 ${
                 activeItem === item.label ? 'text-white' : 'hover:text-white'
               }`}
@@ -70,7 +75,7 @@ const Navigation = () => {
         >
           <a
             href={navItems[3].href}
-            onClick={() => setActiveItem(navItems[3].label)}
+            onClick={(e) => handleNavClick(e, navItems[3].label)}
             className={`nav-typography transition-colors duration-200 ${
               activeItem === navItems[3].label
                 ? 'text-white'

@@ -6,7 +6,12 @@ interface UseTypewriterOptions {
   delay?: number;
 }
 
-export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOptions) => {
+interface UseTypewriterReturn {
+  displayText: string;
+  isComplete: boolean;
+}
+
+export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterOptions): UseTypewriterReturn => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);

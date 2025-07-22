@@ -8,11 +8,17 @@ interface UseAnimateOnceOptions {
   trigger?: boolean;
 }
 
+interface UseAnimateOnceReturn {
+  className: string;
+  elementRef: React.RefObject<HTMLElement | null>;
+  hasAnimated: boolean;
+}
+
 export const useAnimateOnce = ({ 
   animationClass, 
   delay = 0, 
   trigger = true 
-}: UseAnimateOnceOptions) => {
+}: UseAnimateOnceOptions): UseAnimateOnceReturn => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLElement>(null);

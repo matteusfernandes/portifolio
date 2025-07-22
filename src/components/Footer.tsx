@@ -1,5 +1,13 @@
+import { ReactElement } from 'react';
+
+interface SocialLink {
+  name: string;
+  href: string;
+  icon: ReactElement;
+}
+
 const Footer = () => {
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     {
       name: 'LinkedIn',
       href: '#',
