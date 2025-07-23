@@ -10,8 +10,8 @@ export default function SobreMim() {
     <div className="page-layout bg-gradient-main text-white font-mono relative overflow-hidden">
       <Navigation />
 
-      <main className="main-container-layout flex-1">
-        <div className="flex h-full">
+      <main className="flex-1 w-full h-full">
+        <div className="flex h-full min-h-screen">
           {/* Sidebar - Explorador de arquivos */}
           <div className="w-80 bg-dark-blue border-r border-gray-600 p-4">
             <div className="mb-4">
