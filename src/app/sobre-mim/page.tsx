@@ -13,7 +13,7 @@ export default function SobreMim() {
       <main className="flex-1 w-full h-full">
         <div className="flex h-full min-h-screen">
           {/* Sidebar - Explorador de arquivos */}
-          <div className="w-80 bg-dark-blue border-r border-gray-600 p-4">
+          <div className="border-r border-gray-600 p-4" style={{ minWidth: '250px' }}>
             <div className="mb-4">
               <h3 className="text-light-gray text-sm mb-3">info - pessoal</h3>
               
@@ -59,26 +59,12 @@ export default function SobreMim() {
                 </div>
               </div>
             </div>
-
-            <div className="absolute bottom-20 left-4">
-              <h4 className="text-light-gray text-sm mb-2">_minhas redes</h4>
-              <div className="flex space-x-2">
-                <span className="text-blue">in</span>
-                <span className="text-red">M</span>
-                <span className="text-purple">📷</span>
-                <span className="text-blue">💬</span>
-                <span className="text-gray">⚡</span>
-              </div>
-            </div>
           </div>
 
           {/* Área principal - Editor de código */}
           <div className="flex-1 flex flex-col">
             {/* Tabs */}
             <div className="flex border-b border-gray-600">
-              <div className="bg-dark-blue px-4 py-2 border-r border-gray-600 text-orange border-b-2 border-orange">
-                _sobre-mim
-              </div>
               <div className="px-4 py-2 text-light-gray cursor-pointer hover:text-white">
                 Bio
               </div>
@@ -205,7 +191,7 @@ export default function SobreMim() {
           </div>
 
           {/* Sidebar direita - Informações */}
-          <div className="w-80 bg-dark-blue border-l border-gray-600 p-4">
+          <div className="w-80 border-l border-gray-600 p-4">
             <AnimatedElement animation="slide-in-left" delay={5000}>
               <div className="space-y-6">
                 {/* Linguagens */}
