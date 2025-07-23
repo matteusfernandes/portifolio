@@ -20,27 +20,62 @@ export default function SobreMim() {
               {/* Estrutura de pastas */}
               <div className="space-y-2">
                 <div className="flex items-center">
-                  <span className="text-purple mr-2">📁</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="rgba(233,99,119,1)"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+                  </svg>
                   <span className="text-aqua-green">.bio</span>
                 </div>
                 
                 <div className="flex items-center ml-4">
-                  <span className="text-purple mr-2">📂</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="#F4B460"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+                  </svg>
                   <span className="text-aqua-green">.experiência</span>
                 </div>
                 
                 <div className="flex items-center ml-4">
-                  <span className="text-purple mr-2">📂</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="#554EED"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+                  </svg>
                   <span className="text-aqua-green">.educação</span>
                 </div>
                 
                 <div className="flex items-center">
-                  <span className="text-red mr-2">📁</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="#ED4E51"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+                  </svg>
                   <span className="text-aqua-green">.voluntário</span>
                 </div>
                 
                 <div className="flex items-center">
-                  <span className="text-green mr-2">📁</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="#4AC1AF"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
+                  </svg>
                   <span className="text-aqua-green">.interesses</span>
                 </div>
               </div>
