@@ -97,7 +97,7 @@ export default function SobreMim() {
           </div>
 
           {/* Área principal - Editor de código */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-[3] flex flex-col">
             {/* Tabs */}
             <div className="flex border-b border-gray-600">
               <div className="px-4 py-2 text-light-gray cursor-pointer hover:text-white">
@@ -226,7 +226,7 @@ export default function SobreMim() {
           </div>
 
           {/* Sidebar direita - Informações */}
-          <div className="w-80 border-l border-gray-600 p-4">
+          <div className="flex-[2] border-l border-gray-600 p-4">
             <AnimatedElement animation="slide-in-left" delay={5000}>
               <div className="space-y-6">
                 {/* Linguagens */}
