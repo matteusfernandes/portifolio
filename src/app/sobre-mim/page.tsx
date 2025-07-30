@@ -430,7 +430,6 @@ export default function SobreMim() {
         <div className="border-r border-gray-600 flex items-center justify-center" style={{ minWidth: '250px' }}>
           <span className="text-light-gray text-sm">info-pessoal</span>
         </div>
-        <div className="w-6 border-r border-gray-600"></div>
         <div className="flex-1 flex items-center h-full">
           {openTabs.length > 0 && (
             openTabs.map((tab) => (
@@ -467,11 +466,6 @@ export default function SobreMim() {
                 {renderFileTree(fileStructure)}
               </div>
             </div>
-          </div>
-
-          {/* Gap após sidebar esquerda */}
-          <div className="w-6 border-r border-gray-600 relative">
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-400"></div>
           </div>
 
           {/* Conteúdo principal - 60% da largura restante */}
