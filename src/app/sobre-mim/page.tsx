@@ -23,7 +23,7 @@ export default function SobreMim() {
   const fileStructure: FileItem[] = [
     {
       id: 'pessoal',
-      name: 'pessoal',
+      name: '_bio',
       type: 'folder',
       children: [
         {
@@ -246,8 +246,8 @@ export default function SobreMim() {
       ]
     },
     {
-      id: 'projetos',
-      name: 'projetos',
+      id: 'educação',
+      name: '_educação',
       type: 'folder',
       children: [
         {
@@ -324,6 +324,21 @@ export default function SobreMim() {
           )
         }
       ]
+    },
+    {
+      id: 'voluntario',
+      name: '_voluntário',
+      type: 'folder',
+      children: [
+
+      ]
+    },
+    {
+      id: 'interesses',
+      name: '_interesses',
+      type: 'folder',
+      children: [
+      ]
     }
   ];
 
@@ -369,6 +384,26 @@ export default function SobreMim() {
     return currentTab?.content || null;
   };
 
+  // Mapeamento de cores para as pastas
+  const getFolderColor = (folderName: string) => {
+    const folderColors: { [key: string]: string } = {
+      '_bio': '#E96377',
+      '_experiência': '#F4B460', 
+      '_educação': '#554EED',
+      '_voluntário': '#ED4E51',
+      '_interesses': '#4AC1AF',
+    };
+
+    const baseColor = folderColors[folderName];
+    
+    if (baseColor) {
+      return baseColor; // Sempre retorna a cor da pasta, aberta ou fechada
+    }
+    
+    // Cor padrão para outras pastas
+    return '#9CA3AF'; // text-light-gray equivalente
+  };
+
   const renderFileTree = (items: FileItem[], level = 0) => {
     return items.map(item => (
       <div key={item.id} style={{ marginLeft: `${level * 20}px` }}>
@@ -381,7 +416,7 @@ export default function SobreMim() {
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
-                fill={item.name === '_experiência' ? '#F4B460' : 'rgba(233,99,119,1)'}
+                fill={getFolderColor(item.name)}
                 className="w-5 h-5 mr-2"
               >
                 <path d={expandedFolders.includes(item.id) 
@@ -390,8 +425,7 @@ export default function SobreMim() {
                 }></path>
               </svg>
               <span 
-                className={`capitalize ${item.name === '_experiência' ? '' : 'text-aqua-green'}`}
-                style={{ color: item.name === '_experiência' ? '#F4B460' : undefined }}
+                className={`capitalize ${expandedFolders.includes(item.id) ? 'text-white' : 'text-light-gray'}`}
               >
                 {item.name}
               </span>
@@ -415,7 +449,7 @@ export default function SobreMim() {
             >
               <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255ZM4.99255 17.9841C4.44027 17.9841 3.99255 18.4318 3.99255 18.9841C3.99255 19.5364 4.44027 19.9841 4.99255 19.9841H14.9926C15.5448 19.9841 15.9926 19.5364 15.9926 18.9841C15.9926 18.4318 15.5448 17.9841 14.9926 17.9841H4.99255ZM4.99255 7.98407C4.44027 7.98407 3.99255 8.43179 3.99255 8.98407C3.99255 9.53636 4.44027 9.98407 4.99255 9.98407H18.9926C19.5448 9.98407 19.9926 9.53636 19.9926 8.98407C19.9926 8.43179 19.5448 7.98407 18.9926 7.98407H4.99255ZM4.99255 2.98407C4.44027 2.98407 3.99255 3.43179 3.99255 3.98407C3.99255 4.53636 4.44027 4.98407 4.99255 4.98407H18.9926C19.5448 4.98407 19.9926 4.53636 19.9926 3.98407C19.9926 3.43179 19.5448 2.98407 18.9926 2.98407H4.99255Z"></path>
             </svg>
-            <span className="text-aqua-green">{item.name}</span>
+            <span className={`${activeTab === item.id ? 'text-aqua-green' : 'text-light-gray'}`}>{item.name}</span>
           </div>
         )}
       </div>
