@@ -4,83 +4,35 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { TypewriterText } from '@/components/TypewriterText';
 import { AnimatedElement } from '@/components/AnimatedElement';
+import { useState } from 'react';
+
+interface FileItem {
+  id: string;
+  name: string;
+  type: 'file' | 'folder';
+  content?: React.ReactNode;
+  children?: FileItem[];
+}
 
 export default function SobreMim() {
-  return (
-    <div className="page-layout bg-gradient-main text-white font-mono relative overflow-hidden">
-      <Navigation />
+  const [expandedFolders, setExpandedFolders] = useState<string[]>([]);
+  const [openTabs, setOpenTabs] = useState<FileItem[]>([]);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
-      {/* Tab bar - alinhada com o conteúdo principal, sem invação da sidebar esquerda */}
-      <div className="w-full border-b border-gray-600 bg-gradient-main flex" style={{ height: '60px' }}>
-        <div className="border-r border-gray-600 flex items-center justify-center" style={{ minWidth: '250px' }}>
-          <span className="text-light-gray text-sm">Info - Pessoal</span>
-        </div>
-        <div className="flex-1 flex items-center h-full">
-          <div className="bg-dark-gray border-r border-gray-600 px-4 py-2 text-white cursor-pointer hover:bg-gray-700 flex items-center" style={{ minWidth: '120px' }}>
-            Bio
-            <span className="ml-auto text-light-gray hover:text-white cursor-pointer text-lg">×</span>
-          </div>
-        </div>
-      </div>
-
-      <main className="flex-1 w-full h-full">
-        <div className="flex h-full min-h-screen">
-          {/* Sidebar - Explorador de arquivos */}
-          <div className="border-r border-gray-600 p-4" style={{ minWidth: '250px' }}>
-            <div className="mb-4">
-              <h3 className="text-light-gray text-sm mb-3">info - pessoal</h3>
-              
-              {/* Estrutura de pastas */}
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    fill="rgba(233,99,119,1)"
-                    className="w-5 h-5 mr-2"
-                  >
-                    <path d="M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path>
-                  </svg>
-                  <span className="text-aqua-green">.bio</span>
-                </div>
-                
-                <div className="flex items-center ml-4">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    fill="rgba(233,99,119,1)"
-                    className="w-5 h-5 mr-2"
-                  >
-                    <path d="M3 8L9.00319 2H19.9978C20.5513 2 21 2.45531 21 2.9918V21.0082C21 21.556 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V8ZM10 4V9H5V20H19V4H10Z"></path>
-                  </svg>
-                  <span className="text-light-gray">pessoal</span>
-                </div>
-                
-                <div className="flex items-center ml-8">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    fill="rgba(255,255,255,1)"
-                    className="w-4 h-4 mr-2"
-                  >
-                    <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255ZM4.99255 17.9841C4.44027 17.9841 3.99255 18.4318 3.99255 18.9841C3.99255 19.5364 4.44027 19.9841 4.99255 19.9841H14.9926C15.5448 19.9841 15.9926 19.5364 15.9926 18.9841C15.9926 18.4318 15.5448 17.9841 14.9926 17.9841H4.99255ZM4.99255 7.98407C4.44027 7.98407 3.99255 8.43179 3.99255 8.98407C3.99255 9.53636 4.44027 9.98407 4.99255 9.98407H18.9926C19.5448 9.98407 19.9926 9.53636 19.9926 8.98407C19.9926 8.43179 19.5448 7.98407 18.9926 7.98407H4.99255ZM4.99255 2.98407C4.44027 2.98407 3.99255 3.43179 3.99255 3.98407C3.99255 4.53636 4.44027 4.98407 4.99255 4.98407H18.9926C19.5448 4.98407 19.9926 4.53636 19.9926 3.98407C19.9926 3.43179 19.5448 2.98407 18.9926 2.98407H4.99255Z"></path>
-                  </svg>
-                  <span className="text-aqua-green">bio.txt</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Gap após sidebar esquerda */}
-          <div className="w-6 border-r border-gray-600 relative">
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-400"></div>
-          </div>
-
-          {/* Conteúdo principal - 60% da largura restante */}
-          <div className="flex-[3] px-6 py-4 overflow-auto">
+  // Estrutura de arquivos funcional
+  const fileStructure: FileItem[] = [
+    {
+      id: 'pessoal',
+      name: 'pessoal',
+      type: 'folder',
+      children: [
+        {
+          id: 'bio',
+          name: 'bio.txt',
+          type: 'file',
+          content: (
             <AnimatedElement delay={0.1} animation="fade-in-up">
               <div className="max-w-4xl">
-                {/* Cabeçalho com animação */}
                 <div className="mb-8">
                   <h1 className="text-4xl font-bold mb-4">
                     <TypewriterText text="Sobre mim" speed={100} />
@@ -94,18 +46,16 @@ export default function SobreMim() {
                   </div>
                 </div>
 
-                {/* Informações pessoais */}
                 <div className="mb-6">
                   <h3 className="text-light-gray text-sm mb-3">{`//Informações Pessoais`}</h3>
                   <div className="text-gray-300 text-sm space-y-1">
-                    <p>👋 Olá! Sou Matteus Fernandes</p>
+                    <p>👋 TESTE REACT FUNCIONANDO - Olá! Sou Matteus Fernandes</p>
                     <p>🎂 Idade: 20 anos</p>
                     <p>📍 Localização: Brasil</p>
                     <p>💼 Função: Desenvolvedor Full Stack</p>
                   </div>
                 </div>
 
-                                {/* Educação */}
                 <div className="mb-6">
                   <h3 className="text-light-gray text-sm mb-3">{`//Educação`}</h3>
                   <div className="text-gray-300 text-sm">
@@ -115,6 +65,454 @@ export default function SobreMim() {
                 </div>
               </div>
             </AnimatedElement>
+          )
+        },
+        {
+          id: 'experiencia-file',
+          name: 'experiencia.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="Experiência Profissional" speed={100} />
+                  </h1>
+                </div>
+                <p className="text-gray-300">Conteúdo sobre experiência profissional...</p>
+              </div>
+            </AnimatedElement>
+          )
+        }
+      ]
+    },
+    {
+      id: '_experiencia',
+      name: '_experiência',
+      type: 'folder',
+      children: [
+        {
+          id: 'trabalhos',
+          name: 'trabalhos.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="Experiência Profissional" speed={100} />
+                  </h1>
+                  <div className="text-light-gray">
+                    <TypewriterText 
+                      text="// Minha jornada profissional e projetos desenvolvidos" 
+                      speed={50} 
+                      delay={1000}
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Experiência Atual`}</h3>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 2023 - Presente</p>
+                      <p className="text-gray-300">Desenvolvimento de aplicações web completas usando React, Next.js, Node.js e bancos de dados relacionais.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Projetos Destacados`}</h3>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Sistema de Gerenciamento</h4>
+                      <p className="text-gray-300">Aplicação completa para gestão de processos empresariais com dashboard interativo.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-blue text-xs px-2 py-1 rounded">React</span>
+                        <span className="bg-green text-xs px-2 py-1 rounded">Node.js</span>
+                        <span className="bg-yellow text-xs px-2 py-1 rounded">MySQL</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+          )
+        },
+        {
+          id: 'habilidades',
+          name: 'habilidades.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="Habilidades Técnicas" speed={100} />
+                  </h1>
+                  <div className="text-light-gray">
+                    <TypewriterText 
+                      text="// Tecnologias e ferramentas que domino" 
+                      speed={50} 
+                      delay={1000}
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Frontend`}</h3>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="bg-gray-800 p-3 rounded">
+                      <h4 className="text-aqua-green font-semibold mb-2">React/Next.js</h4>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-blue h-2 rounded-full" style={{ width: '90%' }}></div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-800 p-3 rounded">
+                      <h4 className="text-aqua-green font-semibold mb-2">TypeScript</h4>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-blue h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Backend`}</h3>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="bg-gray-800 p-3 rounded">
+                      <h4 className="text-aqua-green font-semibold mb-2">Node.js</h4>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-green h-2 rounded-full" style={{ width: '80%' }}></div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-800 p-3 rounded">
+                      <h4 className="text-aqua-green font-semibold mb-2">Python</h4>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-yellow h-2 rounded-full" style={{ width: '75%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+          )
+        },
+        {
+          id: 'certificacoes',
+          name: 'certificacoes.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="Certificações" speed={100} />
+                  </h1>
+                  <div className="text-light-gray">
+                    <TypewriterText 
+                      text="// Cursos e certificações obtidas" 
+                      speed={50} 
+                      delay={1000}
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Cursos Concluídos`}</h3>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    <p>🎓 <strong>JavaScript ES6+</strong> - Certificação Udemy</p>
+                    <p>⚛️ <strong>React.js Avançado</strong> - Rocketseat</p>
+                    <p>🚀 <strong>Node.js & Express</strong> - Cod3r</p>
+                    <p>💾 <strong>Banco de Dados MySQL</strong> - Curso em Vídeo</p>
+                    <p>🎨 <strong>UI/UX Design</strong> - Figma Academy</p>
+                    <p>🔧 <strong>Git & GitHub</strong> - Digital Innovation One</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Em Andamento`}</h3>
+                  <div className="text-gray-300 text-sm space-y-1">
+                    <p>📚 Engenharia de Software - Unicesumar</p>
+                    <p>🔄 DevOps com Docker e Kubernetes</p>
+                    <p>☁️ AWS Cloud Practitioner</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+          )
+        }
+      ]
+    },
+    {
+      id: 'projetos',
+      name: 'projetos',
+      type: 'folder',
+      children: [
+        {
+          id: 'portfolio',
+          name: 'portfolio.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="Meus Projetos" speed={100} />
+                  </h1>
+                  <div className="text-light-gray">
+                    <TypewriterText 
+                      text="// Principais projetos desenvolvidos" 
+                      speed={50} 
+                      delay={1000}
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-light-gray text-sm mb-3">{`//Projetos Destacados`}</h3>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Sistema de Gerenciamento</h4>
+                      <p className="text-gray-300">Aplicação completa para gestão de processos empresariais com dashboard interativo.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-blue text-xs px-2 py-1 rounded">React</span>
+                        <span className="bg-green text-xs px-2 py-1 rounded">Node.js</span>
+                        <span className="bg-yellow text-xs px-2 py-1 rounded">MySQL</span>
+                      </div>
+                    </div>
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">E-commerce Platform</h4>
+                      <p className="text-gray-300">Plataforma de e-commerce com carrinho, pagamentos e painel administrativo.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-blue text-xs px-2 py-1 rounded">Next.js</span>
+                        <span className="bg-green text-xs px-2 py-1 rounded">Express</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">MongoDB</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedElement>
+          )
+        },
+        {
+          id: 'github',
+          name: 'github.txt',
+          type: 'file',
+          content: (
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="max-w-4xl">
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4">
+                    <TypewriterText text="GitHub & Repositórios" speed={100} />
+                  </h1>
+                </div>
+                <div className="text-gray-300">
+                  <p className="mb-4">🔗 <strong>GitHub:</strong> <a href="https://github.com/matteusfernandes" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">github.com/matteusfernandes</a></p>
+                  <p className="mb-2">📂 <strong>Repositórios principais:</strong></p>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Portfolio pessoal (Next.js + TypeScript)</li>
+                    <li>Sistema de gerenciamento empresarial</li>
+                    <li>API REST com Node.js e Express</li>
+                    <li>Aplicações React com hooks customizados</li>
+                  </ul>
+                </div>
+              </div>
+            </AnimatedElement>
+          )
+        }
+      ]
+    }
+  ];
+
+  const toggleFolder = (folderId: string) => {
+    setExpandedFolders(prev => 
+      prev.includes(folderId) 
+        ? prev.filter(id => id !== folderId)
+        : [...prev, folderId]
+    );
+  };
+
+  const openFile = (file: FileItem) => {
+    // Verificar se a aba já está aberta
+    if (!openTabs.find(tab => tab.id === file.id)) {
+      setOpenTabs(prev => [...prev, file]);
+    }
+    setActiveTab(file.id);
+  };
+
+  const closeTab = (fileId: string, event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    
+    setOpenTabs(prev => {
+      const newTabs = prev.filter(tab => tab.id !== fileId);
+      
+      // Se a aba fechada era a ativa, definir uma nova aba ativa
+      if (activeTab === fileId) {
+        if (newTabs.length > 0) {
+          setActiveTab(newTabs[newTabs.length - 1].id);
+        } else {
+          setActiveTab(null);
+        }
+      }
+      
+      return newTabs;
+    });
+  };
+
+  const getCurrentTabContent = () => {
+    const currentTab = openTabs.find(tab => tab.id === activeTab);
+    return currentTab?.content || null;
+  };
+
+  const renderFileTree = (items: FileItem[], level = 0) => {
+    return items.map(item => (
+      <div key={item.id} style={{ marginLeft: `${level * 20}px` }}>
+        {item.type === 'folder' ? (
+          <div>
+            <div 
+              className="flex items-center cursor-pointer hover:bg-gray-700 rounded px-1 py-1"
+              onClick={() => toggleFolder(item.id)}
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill={item.name === '_experiência' ? '#F4B460' : 'rgba(233,99,119,1)'}
+                className="w-5 h-5 mr-2"
+              >
+                <path d={expandedFolders.includes(item.id) 
+                  ? "M3 8L9.00319 2H19.9978C20.5513 2 21 2.45531 21 2.9918V21.0082C21 21.556 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V8ZM10 4V9H5V20H19V4H10Z"
+                  : "M22 8V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V7H21C21.5523 7 22 7.44772 22 8ZM12.4142 5H2V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"
+                }></path>
+              </svg>
+              <span 
+                className={`capitalize ${item.name === '_experiência' ? '' : 'text-aqua-green'}`}
+                style={{ color: item.name === '_experiência' ? '#F4B460' : undefined }}
+              >
+                {item.name}
+              </span>
+            </div>
+            {expandedFolders.includes(item.id) && item.children && (
+              <div className="ml-4">
+                {renderFileTree(item.children, level + 1)}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div 
+            className="flex items-center cursor-pointer hover:bg-gray-700 rounded px-1 py-1"
+            onClick={() => openFile(item)}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="rgba(255,255,255,1)"
+              className="w-4 h-4 mr-2"
+            >
+              <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255ZM4.99255 17.9841C4.44027 17.9841 3.99255 18.4318 3.99255 18.9841C3.99255 19.5364 4.44027 19.9841 4.99255 19.9841H14.9926C15.5448 19.9841 15.9926 19.5364 15.9926 18.9841C15.9926 18.4318 15.5448 17.9841 14.9926 17.9841H4.99255ZM4.99255 7.98407C4.44027 7.98407 3.99255 8.43179 3.99255 8.98407C3.99255 9.53636 4.44027 9.98407 4.99255 9.98407H18.9926C19.5448 9.98407 19.9926 9.53636 19.9926 8.98407C19.9926 8.43179 19.5448 7.98407 18.9926 7.98407H4.99255ZM4.99255 2.98407C4.44027 2.98407 3.99255 3.43179 3.99255 3.98407C3.99255 4.53636 4.44027 4.98407 4.99255 4.98407H18.9926C19.5448 4.98407 19.9926 4.53636 19.9926 3.98407C19.9926 3.43179 19.5448 2.98407 18.9926 2.98407H4.99255Z"></path>
+            </svg>
+            <span className="text-aqua-green">{item.name}</span>
+          </div>
+        )}
+      </div>
+    ));
+  };
+  return (
+    <div className="page-layout bg-gradient-main text-white font-mono relative overflow-hidden">
+      <Navigation />
+
+      {/* Tab bar - sempre visível como no layout original */}
+      <div className="w-full border-b border-gray-600 bg-gradient-main flex" style={{ height: '60px' }}>
+        <div className="border-r border-gray-600 flex items-center justify-center" style={{ minWidth: '250px' }}>
+          <span className="text-light-gray text-sm">info-pessoal</span>
+        </div>
+        <div className="w-6 border-r border-gray-600"></div>
+        <div className="flex-1 flex items-center h-full">
+          {openTabs.length > 0 && (
+            openTabs.map((tab) => (
+              <div
+                key={tab.id}
+                className={`border-r border-gray-600 px-4 py-2 cursor-pointer hover:bg-gray-700 flex items-center text-sm ${
+                  activeTab === tab.id 
+                    ? 'bg-dark-gray text-white' 
+                    : 'bg-gradient-main text-light-gray'
+                }`}
+                style={{ minWidth: '120px' }}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.name.replace('.txt', '')}
+                <span 
+                  className="ml-auto text-light-gray hover:text-white cursor-pointer text-lg"
+                  onClick={(e) => closeTab(tab.id, e)}
+                >
+                  ×
+                </span>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      <main className="flex-1 w-full h-full">
+        <div className="flex h-full min-h-screen">
+          {/* Sidebar - Explorador de arquivos */}
+          <div className="border-r border-gray-600 p-4" style={{ minWidth: '250px' }}>
+            <div className="mb-4">
+              {/* File Tree */}
+              <div className="space-y-2">
+                {renderFileTree(fileStructure)}
+              </div>
+            </div>
+          </div>
+
+          {/* Gap após sidebar esquerda */}
+          <div className="w-6 border-r border-gray-600 relative">
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-400"></div>
+          </div>
+
+          {/* Conteúdo principal - 60% da largura restante */}
+          <div className="flex-[3] px-6 py-4 overflow-auto">
+            {getCurrentTabContent() || (
+              <AnimatedElement delay={0.1} animation="fade-in-up">
+                <div className="max-w-4xl">
+                  <div className="mb-8">
+                    <h1 className="text-4xl font-bold mb-4">
+                      <TypewriterText text="Sobre mim" speed={100} />
+                    </h1>
+                    <div className="text-light-gray">
+                      <TypewriterText 
+                        text="// Clique nos arquivos para explorar meu conteúdo" 
+                        speed={50} 
+                        delay={1000}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-light-gray text-sm mb-3">{`//Como navegar`}</h3>
+                    <div className="text-gray-300 text-sm space-y-1">
+                      <p>� Clique nas pastas para expandir/recolher</p>
+                      <p>📄 Clique nos arquivos para abrir em abas</p>
+                      <p>❌ Use o × para fechar abas individuais</p>
+                      <p>� Alterne entre abas clicando nelas</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-light-gray text-sm mb-3">{`//Estrutura dos arquivos`}</h3>
+                    <div className="text-gray-300 text-sm">
+                      <p>� <strong>pessoal/</strong> - Informações pessoais e biografia</p>
+                      <p>⭐ <strong>_experiência/</strong> - Experiência profissional e habilidades</p>
+                      <p>📁 <strong>projetos/</strong> - Portfolio de projetos desenvolvidos</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            )}
           </div>
 
           {/* Gap no meio */}
