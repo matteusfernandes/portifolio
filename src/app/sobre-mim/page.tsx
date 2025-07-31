@@ -169,7 +169,20 @@ export default function SobreMim() {
                   <h3 className="text-light-gray text-sm mb-3">{`//Experiência Atual`}</h3>
                   <div className="text-gray-300 text-sm space-y-2">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Front End</h4>
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Front End</h4>
+                          <p className="text-blue-400 text-sm font-medium">Bemtevi</p>
+                        </div>
+                        <a 
+                          href="https://bemtevi.is" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                        >
+                          Ver Site
+                        </a>
+                      </div>
                       <p className="text-light-gray text-xs mb-1">Freelancer • 2024 - Presente</p>
                       <p className="text-gray-300">Desenvolvi e mantenho o site Bemtevi, entregando soluções personalizadas em design e funcionalidade.<br />Utilizei WordPress como CMS, implementando temas e plugins customizados, além de desenvolver em PHP para atender às necessidades específicas do cliente, com foco na experiência do usuário e na eficiência técnica.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
@@ -192,9 +205,48 @@ export default function SobreMim() {
 
                 <div className="mb-6">
                   <h3 className="text-light-gray text-sm mb-3">{`//Outras Experiências`}</h3>
-                  <div className="text-gray-300 text-sm space-y-2">
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                          <p className="text-green-400 text-sm font-medium">Bionana</p>
+                        </div>
+                          <a 
+                            href="https://bionana.vercel.app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 03/2025</p>
+                      <p className="text-gray-300">Desenvolvi uma solução simples de página web para a apresentação do projeto Bionana, de um grupo de alunos da colégio Albert Sabin que aborda a criação de um bioplástico a partir de resíduos da bananeira. O projeto foi qualificado para participar da FEBRACE em 2025. </p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Styled Components</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                          <p className="text-green-400 text-sm font-medium">Shaping Sabin</p>
+                        </div>
+                          <a 
+                            href="https://www.sabinshaping.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
                       <p className="text-light-gray text-xs mb-1">Freelancer • 09/2024</p>
                       <p className="text-gray-300">Foquei na manutenção contínua da plataforma Shaping Sabin, garantindo seu bom funcionamento, corrigindo eventuais falhas e implementando melhorias para otimizar ainda mais a experiência dos usuários e a eficiência na organização de projetos escolares.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
@@ -206,10 +258,102 @@ export default function SobreMim() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-gray-300 text-sm space-y-2 mt-4">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Front End</h4>
+                          <p className="text-green-400 text-sm font-medium">Black Skulls</p>
+                        </div>
+                          <a 
+                            href="https://black-skulls.vercel.app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 05/2024</p>
+                      <p className="text-gray-300">Desenvolvi e implementei um website dinâmico para uma equipe de airsoft, focado na apresentação do time, histórico, eventos e informações para novos membros.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Styled Components</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Front End</h4>
+                          <p className="text-green-400 text-sm font-medium">FHS Advogados Associados</p>
+                        </div>
+                          <a 
+                            href="https://fhsadvogados.com.br" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 03/2024</p>
+                      <p className="text-gray-300">Desenvolvi e implementei um website completo e responsivo para um escritório de advocacia, incluindo um blog dinâmico para publicação de artigos e notícias. A solução foi construída utilizando WordPress como CMS e desenvolvida em PHP para customizações e funcionalidades específicas, visando otimizar a presença online e a interação com o público.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">WordPress</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">HTML</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">CSS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">PHP</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Front End</h4>
+                          <p className="text-green-400 text-sm font-medium">Vitor Araújo Advocacia Criminal</p>
+                        </div>
+                          <a 
+                            href="https://vitor-araujo-psi.vercel.app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 02/2024</p>
+                      <p className="text-gray-300">Desenvolvi e implementei uma Landing Page otimizada para um escritório de advocacia, com foco na captação de leads e apresentação concisa dos serviços.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Styled Components</span>
+                      </div>
+                    </div>
+                  </div>
+                                              
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                          <p className="text-green-400 text-sm font-medium">Shaping Sabin</p>
+                        </div>
+                          <a 
+                            href="https://www.sabinshaping.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
                       <p className="text-light-gray text-xs mb-1">Freelancer • 09/2023</p>
                       <p className="text-gray-300">Atuei na atualização da plataforma Shaping Sabin, implementando novas funcionalidades para aprimorar a experiência dos usuários e otimizar a organização de projetos escolares. Realizei a conversão do front-end de React para Next.js e executei a reestruturação do banco de dados para melhor performance e escalabilidade.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
@@ -224,7 +368,20 @@ export default function SobreMim() {
 
                   <div className="text-gray-300 text-sm space-y-2 mt-4">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                          <p className="text-green-400 text-sm font-medium">Shaping Sabin</p>
+                        </div>
+                          <a 
+                            href="https://www.sabinshaping.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                          >
+                            Ver Site
+                          </a>
+                      </div>
                       <p className="text-light-gray text-xs mb-1">Freelancer • 09/2022</p>
                       <p className="text-gray-300">Fui responsável pelo desenvolvimento da plataforma Shaping Sabin, abrangendo tanto o front-end quanto o back-end, implementando sua estrutura e funcionalidades essenciais para a organização de projetos escolares, e realizando o deploy da aplicação.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
