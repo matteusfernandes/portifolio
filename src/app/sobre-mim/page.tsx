@@ -407,49 +407,297 @@ export default function SobreMim() {
               <div className="max-w-4xl">
                 <div className="mb-8">
                   <h1 className="text-4xl font-bold mb-4">
-                    <TypewriterText text="Habilidades Técnicas" speed={100} />
+                    <TypewriterText text="Habilidades & Competências" speed={100} />
                   </h1>
                   <div className="text-light-gray">
                     <TypewriterText 
-                      text="// Tecnologias e ferramentas que domino" 
+                      text="// Stack tecnológico e habilidades desenvolvidas ao longo da carreira" 
                       speed={50} 
                       delay={1000}
                     />
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <h3 className="text-light-gray text-sm mb-3">{`//Frontend`}</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="bg-gray-800 p-3 rounded">
-                      <h4 className="text-aqua-green font-semibold mb-2">React/Next.js</h4>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-blue h-2 rounded-full" style={{ width: '90%' }}></div>
+                {/* Frontend Development */}
+                <div className="mb-8">
+                  <h3 className="text-light-gray text-sm mb-4 flex items-center gap-2">
+                    <span>⚛️</span>
+                    {`//Frontend Development`}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">⚛️</span>
+                        <h4 className="text-white font-semibold">React.js</h4>
                       </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '90%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Hooks, Context API, Component Design</p>
                     </div>
-                    <div className="bg-gray-800 p-3 rounded">
-                      <h4 className="text-aqua-green font-semibold mb-2">TypeScript</h4>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-blue h-2 rounded-full" style={{ width: '85%' }}></div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🔷</span>
+                        <h4 className="text-white font-semibold">Next.js</h4>
                       </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">SSR, SSG, API Routes, Performance</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-yellow-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">💛</span>
+                        <h4 className="text-white font-semibold">JavaScript</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '88%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">ES6+, Async/Await, DOM Manipulation</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🔷</span>
+                        <h4 className="text-white font-semibold">TypeScript</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Type Safety, Interfaces, Generics</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">💅</span>
+                        <h4 className="text-white font-semibold">Styled Components</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-pink-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">CSS-in-JS, Theming, Responsive Design</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-orange-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🎨</span>
+                        <h4 className="text-white font-semibold">HTML/CSS</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Semantic HTML, Flexbox, Grid, Animations</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <h3 className="text-light-gray text-sm mb-3">{`//Backend`}</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="bg-gray-800 p-3 rounded">
-                      <h4 className="text-aqua-green font-semibold mb-2">Node.js</h4>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-green h-2 rounded-full" style={{ width: '80%' }}></div>
+                {/* Backend Development */}
+                <div className="mb-8">
+                  <h3 className="text-light-gray text-sm mb-4 flex items-center gap-2">
+                    <span>🖥️</span>
+                    {`//Backend Development`}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-green-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🟢</span>
+                        <h4 className="text-white font-semibold">Node.js</h4>
                       </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Express, REST APIs, Middleware</p>
                     </div>
-                    <div className="bg-gray-800 p-3 rounded">
-                      <h4 className="text-aqua-green font-semibold mb-2">Python</h4>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-yellow h-2 rounded-full" style={{ width: '75%' }}></div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🐘</span>
+                        <h4 className="text-white font-semibold">PHP</h4>
                       </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">WordPress Development, Custom Themes</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-yellow-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🐍</span>
+                        <h4 className="text-white font-semibold">Python</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '70%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Scripts, Automation, Web Development</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Database & CMS */}
+                <div className="mb-8">
+                  <h3 className="text-light-gray text-sm mb-4 flex items-center gap-2">
+                    <span>🗄️</span>
+                    {`//Database & CMS`}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🐬</span>
+                        <h4 className="text-white font-semibold">MySQL</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '82%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Complex Queries, Database Design</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-green-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🍃</span>
+                        <h4 className="text-white font-semibold">MongoDB</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '78%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">NoSQL, Collections, Aggregation</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🔗</span>
+                        <h4 className="text-white font-semibold">Sequelize</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">ORM, Migrations, Models</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🔷</span>
+                        <h4 className="text-white font-semibold">WordPress</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '88%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Custom Themes, Plugins, Admin</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tools & DevOps */}
+                <div className="mb-8">
+                  <h3 className="text-light-gray text-sm mb-4 flex items-center gap-2">
+                    <span>🛠️</span>
+                    {`//Tools & DevOps`}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-orange-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🌿</span>
+                        <h4 className="text-white font-semibold">Git</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '90%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Version Control</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-black transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">⚫</span>
+                        <h4 className="text-white font-semibold">Vercel</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-gray-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">Deployment</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">💜</span>
+                        <h4 className="text-white font-semibold">VS Code</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-purple-500 h-2 rounded-full" style={{ width: '95%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">IDE Principal</p>
+                    </div>
+
+                    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition-colors">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🎨</span>
+                        <h4 className="text-white font-semibold">Figma</h4>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                      </div>
+                      <p className="text-xs text-gray-400">UI/UX Design</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Soft Skills */}
+                <div className="mb-8">
+                  <h3 className="text-light-gray text-sm mb-4 flex items-center gap-2">
+                    <span>🧠</span>
+                    {`//Soft Skills & Liderança`}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 p-4 rounded-lg border border-blue-500/30">
+                      <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                        <span>👥</span>
+                        Liderança & Gestão
+                      </h4>
+                      <ul className="text-sm text-gray-300 space-y-1">
+                        <li>• Ex-Presidente Rotaract Club de Guanambi</li>
+                        <li>• Ex-Presidente OAB Jovem (OAB-Guanambi)</li>
+                        <li>• Gestão de equipes e projetos</li>
+                        <li>• Tomada de decisões estratégicas</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-green-900/20 to-blue-900/20 p-4 rounded-lg border border-green-500/30">
+                      <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                        <span>🤝</span>
+                        Comunicação & Colaboração
+                      </h4>
+                      <ul className="text-sm text-gray-300 space-y-1">
+                        <li>• Trabalho em equipe multidisciplinar</li>
+                        <li>• Comunicação técnica clara</li>
+                        <li>• Relacionamento com clientes</li>
+                        <li>• Mentoria e desenvolvimento de outros</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 p-4 rounded-lg border border-purple-500/30">
+                      <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                        <span>🎯</span>
+                        Resolução de Problemas
+                      </h4>
+                      <ul className="text-sm text-gray-300 space-y-1">
+                        <li>• Pensamento analítico e lógico</li>
+                        <li>• Debugging e troubleshooting</li>
+                        <li>• Otimização de performance</li>
+                        <li>• Soluções criativas e eficientes</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 p-4 rounded-lg border border-yellow-500/30">
+                      <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                        <span>📚</span>
+                        Aprendizado Contínuo
+                      </h4>
+                      <ul className="text-sm text-gray-300 space-y-1">
+                        <li>• Adaptação a novas tecnologias</li>
+                        <li>• Pesquisa e autodidata</li>
+                        <li>• Participação em comunidades</li>
+                        <li>• Atualização constante do conhecimento</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
