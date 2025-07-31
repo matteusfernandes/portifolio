@@ -137,23 +137,6 @@ export default function SobreMim() {
               </div>
             </AnimatedElement>
           )
-        },
-        {
-          id: 'experiencia-file',
-          name: 'experiencia.txt',
-          type: 'file',
-          content: (
-            <AnimatedElement delay={0.1} animation="fade-in-up">
-              <div className="max-w-4xl">
-                <div className="mb-8">
-                  <h1 className="text-4xl font-bold mb-4">
-                    <TypewriterText text="Experiência Profissional" speed={100} />
-                  </h1>
-                </div>
-                <p className="text-gray-300">Conteúdo sobre experiência profissional...</p>
-              </div>
-            </AnimatedElement>
-          )
         }
       ]
     },
@@ -186,23 +169,70 @@ export default function SobreMim() {
                   <h3 className="text-light-gray text-sm mb-3">{`//Experiência Atual`}</h3>
                   <div className="text-gray-300 text-sm space-y-2">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
-                      <p className="text-light-gray text-xs mb-1">Freelancer • 2023 - Presente</p>
-                      <p className="text-gray-300">Desenvolvimento de aplicações web completas usando React, Next.js, Node.js e bancos de dados relacionais.</p>
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Front End</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 2024 - Presente</p>
+                      <p className="text-gray-300">Desenvolvi e mantenho o site Bemtevi, entregando soluções personalizadas em design e funcionalidade.<br />Utilizei WordPress como CMS, implementando temas e plugins customizados, além de desenvolver em PHP para atender às necessidades específicas do cliente, com foco na experiência do usuário e na eficiência técnica.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">WordPress</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">HTML</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">CSS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">PHP</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack Freelancer</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 2022 - Presente</p>
+                      <p className="text-gray-300">Atuo como desenvolvedor freelancer, com experiência no desenvolvimento e manutenção de plataformas web completas.</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-light-gray text-sm mb-3">{`//Projetos Destacados`}</h3>
+                  <h3 className="text-light-gray text-sm mb-3">{`//Outras Experiências`}</h3>
                   <div className="text-gray-300 text-sm space-y-2">
                     <div className="bg-gray-800 p-4 rounded-lg">
-                      <h4 className="text-white font-semibold mb-2">Sistema de Gerenciamento</h4>
-                      <p className="text-gray-300">Aplicação completa para gestão de processos empresariais com dashboard interativo.</p>
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 09/2024</p>
+                      <p className="text-gray-300">Foquei na manutenção contínua da plataforma Shaping Sabin, garantindo seu bom funcionamento, corrigindo eventuais falhas e implementando melhorias para otimizar ainda mais a experiência dos usuários e a eficiência na organização de projetos escolares.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
-                        <span className="bg-blue text-xs px-2 py-1 rounded">React</span>
-                        <span className="bg-green text-xs px-2 py-1 rounded">Node.js</span>
-                        <span className="bg-yellow text-xs px-2 py-1 rounded">MySQL</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NodeJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">MySql</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Sequelize</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 09/2023</p>
+                      <p className="text-gray-300">Atuei na atualização da plataforma Shaping Sabin, implementando novas funcionalidades para aprimorar a experiência dos usuários e otimizar a organização de projetos escolares. Realizei a conversão do front-end de React para Next.js e executei a reestruturação do banco de dados para melhor performance e escalabilidade.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NodeJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">MySql</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Sequelize</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-gray-300 text-sm space-y-2 mt-4">
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Desenvolvedor Full Stack</h4>
+                      <p className="text-light-gray text-xs mb-1">Freelancer • 09/2022</p>
+                      <p className="text-gray-300">Fui responsável pelo desenvolvimento da plataforma Shaping Sabin, abrangendo tanto o front-end quanto o back-end, implementando sua estrutura e funcionalidades essenciais para a organização de projetos escolares, e realizando o deploy da aplicação.</p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        <span className="bg-purple text-xs px-2 py-1 rounded">React</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">NodeJS</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">MySql</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Sequelize</span>
                       </div>
                     </div>
                   </div>
@@ -349,7 +379,7 @@ export default function SobreMim() {
                       <p className="text-gray-300">Aplicação completa para gestão de processos empresariais com dashboard interativo.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
                         <span className="bg-blue text-xs px-2 py-1 rounded">React</span>
-                        <span className="bg-green text-xs px-2 py-1 rounded">Node.js</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Node.js</span>
                         <span className="bg-yellow text-xs px-2 py-1 rounded">MySQL</span>
                       </div>
                     </div>
@@ -358,7 +388,7 @@ export default function SobreMim() {
                       <p className="text-gray-300">Plataforma de e-commerce com carrinho, pagamentos e painel administrativo.</p>
                       <div className="mt-2 flex flex-wrap gap-1">
                         <span className="bg-blue text-xs px-2 py-1 rounded">Next.js</span>
-                        <span className="bg-green text-xs px-2 py-1 rounded">Express</span>
+                        <span className="bg-purple text-xs px-2 py-1 rounded">Express</span>
                         <span className="bg-purple text-xs px-2 py-1 rounded">MongoDB</span>
                       </div>
                     </div>
