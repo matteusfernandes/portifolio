@@ -1776,7 +1776,7 @@ export default function SobreMim() {
       {/* Tab bar - sempre visível como no layout original */}
       <div className="w-full border-b border-gray-600 bg-gradient-main flex" style={{ height: '60px' }}>
         <div className="border-r border-gray-600 flex items-center justify-center" style={{ width: '280px' }}>
-          <span className="text-light-gray text-sm">info-pessoal</span>
+          <span className="text-light-gray text-sm" style={{ fontSize: '15px' }}>info-pessoal</span>
         </div>
         <div className="flex-1 flex items-center h-full">
           {openTabs.length > 0 && (
@@ -1818,7 +1818,7 @@ export default function SobreMim() {
             {/* Seção de Contato */}
             <div className="border-t border-gray-600 border-b border-gray-600">
               <div className="flex items-center justify-center py-4">
-                <span className="text-light-gray text-sm">_contato</span>
+                <span className="text-light-gray text-sm" style={{ fontSize: '15px' }}>_contato</span>
               </div>
             </div>
             
