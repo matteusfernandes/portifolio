@@ -28,7 +28,7 @@ const Navigation = () => {
       <div className="flex items-center h-full">
         <div
           className="nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20"
-          style={{ minWidth: '250px' }}
+          style={{ minWidth: '280px' }}
         >
           <span className="nav-typography" style={{ color: '#8896B0' }}>
             Matteus Fernandes
