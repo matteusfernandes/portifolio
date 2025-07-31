@@ -239,19 +239,21 @@ export default function SobreMim() {
                   <div className="mb-6">
                     <h3 className="text-light-gray text-sm mb-3">{`//Como navegar`}</h3>
                     <div className="text-gray-300 text-sm space-y-1">
-                      <p>� Clique nas pastas para expandir/recolher</p>
+                      <p>📂 Clique nas pastas para expandir/recolher</p>
                       <p>📄 Clique nos arquivos para abrir em abas</p>
                       <p>❌ Use o × para fechar abas individuais</p>
-                      <p>� Alterne entre abas clicando nelas</p>
+                      <p>🗂️ Alterne entre abas clicando nelas</p>
                     </div>
                   </div>
 
                   <div className="mb-6">
                     <h3 className="text-light-gray text-sm mb-3">{`//Estrutura dos arquivos`}</h3>
                     <div className="text-gray-300 text-sm">
-                      <p>� <strong>pessoal/</strong> - Informações pessoais e biografia</p>
+                      <p>📂 <strong>_bio/</strong> - Informações pessoais e biografia</p>
                       <p>⭐ <strong>_experiência/</strong> - Experiência profissional e habilidades</p>
-                      <p>📁 <strong>projetos/</strong> - Portfolio de projetos desenvolvidos</p>
+                      <p>🎓 <strong>_educação/</strong> - Formação acadêmica</p>
+                      <p>🤝 <strong>_voluntário/</strong> - Trabalho voluntário</p>
+                      <p>💡 <strong>_interesses/</strong> - Interesses e hobbies</p>
                     </div>
                   </div>
                 </div>
