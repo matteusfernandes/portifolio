@@ -262,7 +262,7 @@ export default function SobreMim() {
           </div>
 
           {/* Gap no meio */}
-          <div className="w-6 border-r border-gray-600 relative border-l border-gray-600 relative">
+          <div className="w-6 border-r border-gray-600 relative border-l border-gray-600">
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-400"></div>
           </div>
 
