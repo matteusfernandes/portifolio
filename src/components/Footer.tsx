@@ -58,13 +58,14 @@ const Footer = () => {
   return (
     <footer className="footer-layout">
       <div className="footer-section">
-        <span className="text-light-gray font-mono text-sm">_minhas-redes</span>
+        <span className="text-light-gray font-mono text-sm" style={{ minWidth: '129px' }}>_minhas-redes</span>
       </div>
       <div className="footer-section social-links">
         {socialLinks.map((link) => (
           <div 
             key={link.name} 
             className="social-icon"
+             style={{ minWidth: '55px' }}
           >
             <a
               href={link.href}

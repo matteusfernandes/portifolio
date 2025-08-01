@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 interface NavItem {
   label: string;
@@ -9,16 +10,11 @@ interface NavItem {
 }
 
 const Navigation = () => {
-  const [activeItem, setActiveItem] = useState<string>('_hello');
-
-  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, label: string) => {
-    e.preventDefault();
-    setActiveItem(label);
-  };
+  const pathname = usePathname();
 
   const navItems: NavItem[] = [
-    { label: '_hello', href: '#', active: true },
-    { label: '_sobre-mim', href: '#sobre' },
+    { label: '_hello', href: '/' },
+    { label: '_sobre-mim', href: '/sobre-mim' },
     { label: '_projetos', href: '#projetos' },
     { label: '_contato', href: '#contato' },
   ];
@@ -28,60 +24,53 @@ const Navigation = () => {
       <div className="flex items-center h-full">
         <div
           className="nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20"
-          style={{ minWidth: '250px' }}
+          style={{ minWidth: '280px' }}
         >
           <span className="nav-typography" style={{ color: '#8896B0' }}>
             Matteus Fernandes
           </span>
         </div>
 
-        {navItems.slice(0, 3).map((item) => (
-          <div
-            key={item.label}
-            className={`nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20 transition-all duration-300 ${
-              activeItem === item.label ? 'border-b-5' : ''
-            }`}
-            style={{
-              ...(activeItem === item.label ? { borderBottomColor: '#F4B460' } : {})
-            }}
-          >
-            <a
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.label)}
-              className={`nav-typography transition-colors duration-200 ${
-                activeItem === item.label ? 'text-white' : 'hover:text-white'
+        {navItems.slice(0, 3).map((item) => {
+          // Define ativo para rotas reais
+          const isActive = (item.href === '/' && pathname === '/') ||
+            (item.href === '/sobre-mim' && pathname.startsWith('/sobre-mim'));
+          return (
+            <div
+              key={item.label}
+              className={`nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20 transition-all duration-300 ${
+                isActive ? 'border-b-5' : ''
               }`}
-              style={activeItem === item.label ? {} : { color: '#8896B0' }}
+              style={{
+                ...(isActive ? { borderBottomColor: '#F4B460' } : {})
+              }}
             >
-              {item.label}
-            </a>
-          </div>
-        ))}
+              <Link
+                href={item.href}
+                className={`nav-typography transition-colors duration-200 ${
+                  isActive ? 'text-white' : 'hover:text-white'
+                }`}
+                style={isActive ? {} : { color: '#8896B0' }}
+                scroll={false}
+              >
+                {item.label}
+              </Link>
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex-1"></div>
 
       <div className="flex items-center h-full">
         <div
-          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up ${
-            activeItem === navItems[3].label ? 'border-b-5' : ''
-          }`}
-          style={{
-            ...(activeItem === navItems[3].label
-              ? { borderBottomColor: '#F4B460' }
-              : {}),
-            animationDelay: '600ms'
-          }}
+          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up`}
+          style={{ animationDelay: '600ms' }}
         >
           <a
             href={navItems[3].href}
-            onClick={(e) => handleNavClick(e, navItems[3].label)}
-            className={`nav-typography transition-colors duration-200 ${
-              activeItem === navItems[3].label
-                ? 'text-white'
-                : 'hover:text-white'
-            }`}
-            style={activeItem === navItems[3].label ? {} : { color: '#8896B0' }}
+            className={`nav-typography transition-colors duration-200 hover:text-white`}
+            style={{ color: '#8896B0' }}
           >
             {navItems[3].label}
           </a>
