@@ -15,7 +15,7 @@ const Navigation = () => {
   const navItems: NavItem[] = [
     { label: '_hello', href: '/' },
     { label: '_sobre-mim', href: '/sobre-mim' },
-    { label: '_projetos', href: '#projetos' },
+    { label: '_projetos', href: '/projetos' },
     { label: '_contato', href: '#contato' },
   ];
 
@@ -34,7 +34,8 @@ const Navigation = () => {
         {navItems.slice(0, 3).map((item) => {
           // Define ativo para rotas reais
           const isActive = (item.href === '/' && pathname === '/') ||
-            (item.href === '/sobre-mim' && pathname.startsWith('/sobre-mim'));
+            (item.href === '/sobre-mim' && pathname.startsWith('/sobre-mim')) ||
+            (item.href === '/projetos' && pathname.startsWith('/projetos'));
           return (
             <div
               key={item.label}
