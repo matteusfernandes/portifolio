@@ -16,6 +16,27 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
+    name: 'App Delivery',
+    tech: '_next.js & typescript',
+    description: '/Aplicação full-stack de delivery modernizada',
+    skills: ['Next.js', 'TypeScript', 'MongoDB', 'Node.js', 'Tailwind CSS'],
+    detailedDescription: 'Aplicação completa de delivery modernizada com as melhores práticas atuais.',
+    longDescription: 'Sistema full-stack para delivery com frontend Next.js, backend Node.js, banco MongoDB, sistema de pagamento integrado e notificações em tempo real. Projeto totalmente modernizado com TypeScript.',
+    category: 'Projeto Full-Stack - Next.js & TypeScript',
+    developedSkills: [
+      'Desenvolver aplicações full-stack modernas',
+      'Implementar TypeScript em projetos complexos',
+      'Integrar banco de dados MongoDB',
+      'Criar sistemas de pagamento online',
+      'Implementar notificações em tempo real',
+      'Configurar CI/CD e deploy automatizado'
+    ],
+    image: '/placeholder-project.png',
+    githubUrl: 'https://github.com/matteusfernandes/app-delivery',
+    demoUrl: 'https://app-delivery-demo.vercel.app'
+  },
+  {
+    id: 2,
     name: 'Trybe Wallet',
     tech: '_react & redux',
     description: '/Carteira de controle de gastos com conversor de moedas',
@@ -34,7 +55,7 @@ export const projects: Project[] = [
     image: '/placeholder-project.png',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Recipe App',
     tech: '_react hooks & context api',
     description: '/App de receitas com favoritos e filtros',
@@ -53,7 +74,7 @@ export const projects: Project[] = [
     image: '/placeholder-project.png',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Tryunfo',
     tech: '_react & class components',
     description: '/Jogo de cartas estilo Super Trunfo',
@@ -71,7 +92,7 @@ export const projects: Project[] = [
     image: '/placeholder-project.png',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Star Wars Planets',
     tech: '_react hooks & context api',
     description: '/Filtro de planetas do universo Star Wars',
@@ -89,7 +110,7 @@ export const projects: Project[] = [
     image: '/placeholder-project.png',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Store Manager',
     tech: '_node.js & mysql',
     description: '/API RESTful para gerenciamento de vendas',
@@ -107,7 +128,7 @@ export const projects: Project[] = [
     image: '/placeholder-project.png',
   },
   {
-    id: 6,
+    id: 7,
     name: 'Talker Manager',
     tech: '_node.js & express',
     description: '/API para cadastro de palestrantes',
