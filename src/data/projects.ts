@@ -8,7 +8,13 @@ export interface Project {
   longDescription: string;
   category: string;
   developedSkills: string[];
-  image: string;
+  image: string; // Imagem principal (mantido para compatibilidade)
+  images?: {
+    main?: string;
+    mobile?: string;
+    features?: string;
+    dashboard?: string;
+  };
   githubUrl?: string;
   demoUrl?: string;
 }
@@ -31,7 +37,13 @@ export const projects: Project[] = [
       'Implementar notificações em tempo real',
       'Configurar CI/CD e deploy automatizado'
     ],
-    image: '/placeholder-project.png',
+    image: '/images/projects/app-delivery/desktop-main.png',
+    images: {
+      main: '/images/projects/app-delivery/desktop-main.png',
+      mobile: '/images/projects/app-delivery/mobile-view.png',
+      features: '/images/projects/app-delivery/features-demo.png',
+      dashboard: '/images/projects/app-delivery/dashboard.png'
+    },
     githubUrl: 'https://github.com/matteusfernandes/app-delivery',
     demoUrl: 'https://app-delivery-demo.vercel.app'
   },

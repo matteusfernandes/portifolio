@@ -1,6 +1,7 @@
 import React from 'react';
 import { Project } from '@/data/projects';
 import { AnimatedElement } from '@/components/AnimatedElement';
+import { ProjectImageGallery } from './ProjectImageGallery';
 
 interface ProjectDetailsSidebarProps {
   selectedProject: Project;
@@ -26,19 +27,8 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
             </div>
           </div>
           
-          {/* Preview melhorado do projeto selecionado */}
-          <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-lg mb-4 flex items-center justify-center relative group overflow-hidden">
-            <div className="text-gray-500 text-center transition-all duration-300 group-hover:text-gray-400">
-              <div className="w-20 h-20 bg-gray-700 rounded-lg mx-auto mb-3 flex items-center justify-center animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
-                  <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255Z"></path>
-                </svg>
-              </div>
-              <span className="text-sm">Screenshot em breve</span>
-            </div>
-            {/* Gradiente overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-aqua-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </div>
+          {/* Galeria de imagens do projeto */}
+          <ProjectImageGallery project={selectedProject} className="mb-4" />
           
           {/* Botões de ação */}
           <div className="flex space-x-3 mb-6">
