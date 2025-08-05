@@ -50,21 +50,29 @@ export const projects: Project[] = [
   {
     id: 2,
     name: 'Trybe Wallet',
-    tech: '_react & redux',
-    description: '/Carteira de controle de gastos com conversor de moedas',
-    skills: ['React', 'Redux', 'JavaScript', 'CSS'],
-    detailedDescription: 'Projeto proposto para o desenvolvimento de uma carteira de controle de gastos com conversor de moedas.',
-    longDescription: 'Essa aplicação permite ao usuário adicionar, remover e editar um gasto, além de proporcionar a visualização de uma tabela com todos os seus gastos e a visualização do total de gastos convertidos para uma moeda de escolha.',
-    category: 'Bloco 15 - Gerenciamento de estado com Redux.',
+    tech: '_next.js & zustand',
+    description: '/Carteira financeira modernizada com Next.js e Zustand',
+    skills: ['Next.js', 'TypeScript', 'Zustand', 'Tailwind CSS', 'API Integration'],
+    detailedDescription: 'Carteira de controle de gastos modernizada com conversor de moedas em tempo real.',
+    longDescription: 'Aplicação financeira completa refatorada para Next.js 15 com TypeScript e Zustand para gerenciamento de estado. Permite controlar gastos, converter moedas, categorizar despesas e gerar relatórios detalhados. Interface moderna e responsiva com gráficos interativos.',
+    category: 'Projeto Full-Stack - Next.js & TypeScript',
     developedSkills: [
-      'Criar um store Redux em aplicações React',
-      'Criar reducers no Redux em aplicações React',
-      'Criar actions no Redux em aplicações React',
-      'Criar dispatchers no Redux em aplicações React',
-      'Conectar Redux aos componentes React',
-      'Criar actions assíncronas na sua aplicação React que faz uso do Redux.'
+      'Refatorar aplicações React para Next.js',
+      'Implementar Zustand para gerenciamento de estado',
+      'Integrar APIs de cotação em tempo real',
+      'Criar dashboards com gráficos interativos',
+      'Desenvolver sistema de categorização',
+      'Implementar exportação de relatórios'
     ],
-    image: '/window.svg',
+    image: '/images/projects/trybe-wallet/desktop-main.png',
+    images: {
+      main: '/images/projects/trybe-wallet/desktop-main.png',
+      mobile: '/images/projects/trybe-wallet/mobile-view.png',
+      features: '/images/projects/trybe-wallet/features-demo.png',
+      dashboard: '/images/projects/trybe-wallet/dashboard.png'
+    },
+    githubUrl: 'https://github.com/matteusfernandes/trybe-wallet',
+    demoUrl: 'https://trybe-wallet-modern.vercel.app'
   },
   {
     id: 3,
