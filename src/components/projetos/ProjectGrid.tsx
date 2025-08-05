@@ -1,7 +1,7 @@
 import React from 'react';
 import { Project } from '@/data/projects';
 import { ProjectCard } from './ProjectCard';
-import { AnimatedElement } from './AnimatedElement';
+import { AnimatedElement } from '../AnimatedElement';
 
 interface ProjectGridProps {
   projects: Project[];

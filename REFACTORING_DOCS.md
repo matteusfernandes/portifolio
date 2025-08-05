@@ -1,4 +1,29 @@
-# Documentação da Refatoração - Página de Projetos
+# Documentação da R```
+src/
+├── components/
+│   ├── projetos/                    # Componentes específicos da página projetos
+│   │   ├── ProjectFilters.tsx       # Filtros de categoria/tecnologia
+│   │   ├── ProjectGrid.tsx          # Grid de projetos + empty state
+│   │   ├── ProjectCard.tsx          # Card individual de projeto
+│   │   ├── ProjectSkillsSidebar.tsx # Sidebar esquerda com skills
+│   │   ├── ProjectDetailsSidebar.tsx# Sidebar direita com detalhes
+│   │   └── index.ts                 # Barrel exports
+│   ├── sobre-mim/                   # Componentes específicos da página sobre-mim
+│   ├── Navigation.tsx               # Componentes gerais
+│   ├── Footer.tsx
+│   ├── AnimatedElement.tsx
+│   └── index.ts                     # Barrel exports geral
+├── data/
+│   ├── projects.ts                  # Dados e interfaces
+│   └── index.ts                     # Barrel exports
+├── hooks/
+│   ├── useProjectFilters.ts         # Custom hook para filtros
+│   └── index.ts                     # Barrel exports
+├── utils/
+│   ├── skillIcons.tsx               # Utilitários de ícones
+│   └── index.ts                     # Barrel exports
+└── app/projetos/page.tsx            # Página principal refatorada
+```ção - Página de Projetos
 
 ## Visão Geral
 A página de projetos foi refatorada para melhorar a manutenibilidade, legibilidade e organização do código. A estrutura monolítica foi dividida em componentes menores e mais focados.
@@ -17,13 +42,13 @@ A página de projetos foi refatorada para melhorar a manutenibilidade, legibilid
 - **`useProjectFilters.ts`** - Hook customizado para gerenciamento de filtros
 - **`index.ts`** - Arquivo barrel para hooks
 
-### 📁 `/src/components/`
+### 📁 `/src/componentes/projetos/`
 - **`ProjectFilters.tsx`** - Componente de filtros (categoria e tecnologia)
 - **`ProjectGrid.tsx`** - Grid de projetos com estado vazio
 - **`ProjectCard.tsx`** - Card individual de projeto
 - **`ProjectSkillsSidebar.tsx`** - Sidebar esquerda com skills e contato
 - **`ProjectDetailsSidebar.tsx`** - Sidebar direita com detalhes do projeto
-- **`index.ts`** - Arquivo barrel para componentes
+- **`index.ts`** - Arquivo barrel para componentes de projetos
 
 ## Componentes
 
@@ -129,6 +154,27 @@ interface Project {
 - **TypeScript** - Type safety em toda aplicação
 - **Props Interface** - Definições claras de props
 - **Separation of Concerns** - Dados, lógica e apresentação separados
+- **Page-based Organization** - Componentes organizados por página/feature
+
+## Organização por Páginas
+
+A estrutura de componentes segue o padrão de organização por páginas/features:
+
+```
+src/components/
+├── projetos/           # Todos os componentes da página projetos
+├── sobre-mim/          # Todos os componentes da página sobre-mim
+├── Navigation.tsx      # Componentes compartilhados
+├── Footer.tsx          # Componentes compartilhados
+└── AnimatedElement.tsx # Componentes compartilhados
+```
+
+### Benefícios da Organização por Páginas:
+- **Localização** - Fácil encontrar componentes relacionados
+- **Escalabilidade** - Cada nova página tem sua própria pasta
+- **Manutenção** - Mudanças isoladas por feature
+- **Colaboração** - Times podem trabalhar em features separadas
+- **Modularidade** - Componentes page-specific vs compartilhados
 
 ## Performance
 
