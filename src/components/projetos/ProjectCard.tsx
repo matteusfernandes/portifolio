@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import { Project } from '@/data/projects';
 import { getSkillIcon } from '@/utils/skillIcons';
 
@@ -17,6 +18,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onGitHubClick,
   onDemoClick
 }) => {
+  const [imageError, setImageError] = useState(false);
+  const previewImage = project.images?.main || project.image;
+
   return (
     <div 
       className={`bg-gray-800/50 border rounded-lg overflow-hidden hover:border-gray-600 hover:bg-gray-800/70 transition-all duration-300 cursor-pointer transform hover:scale-[1.02] ${
@@ -42,16 +46,27 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </p>
       </div>
       
-      {/* Project Image/Preview com loading animado */}
-      <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border-b border-gray-700 relative group">
-        <div className="text-gray-500 text-center transition-all duration-300 group-hover:text-gray-400">
-          <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center animate-pulse">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-              <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255Z"></path>
-            </svg>
+      {/* Project Image/Preview */}
+      <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border-b border-gray-700 relative group overflow-hidden">
+        {!imageError && previewImage ? (
+          <Image
+            src={previewImage}
+            alt={`${project.name} - Preview`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div className="text-gray-500 text-center transition-all duration-300 group-hover:text-gray-400">
+            <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center animate-pulse">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255Z"></path>
+              </svg>
+            </div>
+            <span className="text-xs">Preview em desenvolvimento</span>
           </div>
-          <span className="text-xs">Preview em desenvolvimento</span>
-        </div>
+        )}
+        
         {/* Overlay para hover */}
         <div className="absolute inset-0 bg-aqua-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <span className="text-aqua-green text-sm font-medium">Clique para mais detalhes</span>

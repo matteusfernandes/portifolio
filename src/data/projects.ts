@@ -37,12 +37,12 @@ export const projects: Project[] = [
       'Implementar notificações em tempo real',
       'Configurar CI/CD e deploy automatizado'
     ],
-    image: '/images/projects/app-delivery/placeholder.svg',
+    image: '/images/projects/app-delivery/desktop-main.png',
     images: {
-      main: '/images/projects/app-delivery/placeholder.svg',
-      mobile: '/images/projects/app-delivery/placeholder.svg',
-      features: '/images/projects/app-delivery/placeholder.svg',
-      dashboard: '/images/projects/app-delivery/placeholder.svg'
+      main: '/images/projects/app-delivery/desktop-main.png',
+      mobile: '/images/projects/app-delivery/mobile-view.png',
+      features: '/images/projects/app-delivery/features-demo.png',
+      dashboard: '/images/projects/app-delivery/dashboard.png'
     },
     githubUrl: 'https://github.com/matteusfernandes/app-delivery',
     demoUrl: 'https://app-delivery-demo.vercel.app'
@@ -64,7 +64,7 @@ export const projects: Project[] = [
       'Conectar Redux aos componentes React',
       'Criar actions assíncronas na sua aplicação React que faz uso do Redux.'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
   {
     id: 3,
@@ -83,7 +83,7 @@ export const projects: Project[] = [
       'Implementar filtros e busca',
       'Gerenciar estado global da aplicação'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
   {
     id: 4,
@@ -101,7 +101,7 @@ export const projects: Project[] = [
       'Passar informações entre componentes via props',
       'Verificar tipos com PropTypes'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
   {
     id: 5,
@@ -119,7 +119,7 @@ export const projects: Project[] = [
       'Utilizar React Hook useEffect',
       'Criar filtros dinâmicos'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
   {
     id: 6,
@@ -137,7 +137,7 @@ export const projects: Project[] = [
       'Criar middleware de validações',
       'Implementar testes unitários'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
   {
     id: 7,
@@ -155,6 +155,6 @@ export const projects: Project[] = [
       'Realizar validações de dados',
       'Implementar autenticação com token'
     ],
-    image: '/placeholder-project.png',
+    image: '/window.svg',
   },
 ];

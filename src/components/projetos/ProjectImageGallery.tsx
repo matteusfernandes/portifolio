@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Project } from '@/data/projects';
+import { ImageModal } from './ImageModal';
 
 interface ProjectImageGalleryProps {
   project: Project;
@@ -13,6 +14,13 @@ export const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState(project.images?.main || project.image);
   const [imageError, setImageError] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Reset state when project changes
+  useEffect(() => {
+    setSelectedImage(project.images?.main || project.image);
+    setImageError(false);
+  }, [project.id, project.images?.main, project.image]);
 
   const images = [
     { key: 'main', src: project.images?.main || project.image, label: 'Principal' },
@@ -25,21 +33,35 @@ export const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
     setImageError(true);
   };
 
+  const handleImageClick = () => {
+    if (!imageError && selectedImage) {
+      setIsModalOpen(true);
+    }
+  };
+
+  const getImageLabel = () => {
+    const currentImage = images.find(img => img.src === selectedImage);
+    return currentImage ? currentImage.label : 'Screenshot';
+  };
+
   return (
     <div className={`space-y-4 ${className}`}>
       {/* Imagem Principal */}
-      <div className="relative group overflow-hidden rounded-lg border border-gray-700">
+      <div 
+        className="relative group overflow-hidden rounded-lg border border-gray-700 cursor-pointer"
+        onClick={handleImageClick}
+      >
         {!imageError && selectedImage ? (
           <Image 
             src={selectedImage}
-            alt={`${project.name} - Screenshot`}
+            alt={`${project.name} - ${getImageLabel()}`}
             width={800}
             height={450}
-            className="w-full h-48 sm:h-64 lg:h-72 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-48 sm:h-64 lg:h-72 xl:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
             onError={handleImageError}
           />
         ) : (
-          <div className="w-full h-48 sm:h-64 lg:h-72 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border border-gray-700">
+          <div className="w-full h-48 sm:h-64 lg:h-72 xl:h-80 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border border-gray-700">
             <div className="text-gray-500 text-center">
               <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center animate-pulse">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
@@ -51,11 +73,16 @@ export const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
           </div>
         )}
         
-        {/* Overlay com info */}
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-4 text-white">
-            <p className="text-sm font-medium">{project.name}</p>
-            <p className="text-xs text-gray-300">Clique nas miniaturas para navegar</p>
+        {/* Overlay com info melhorado */}
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="text-center text-white">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M11 2V4H13V2H21C21.5523 2 22 2.44772 22 3V21C22 21.5523 21.5523 22 21 22H3C2.44772 22 2 21.5523 2 21V3C2 2.44772 2.44772 2 3 2H11ZM4 4V20H20V4H15V8H9V4H4ZM11 4V6H13V4H11Z"></path>
+              </svg>
+            </div>
+            <p className="text-sm font-medium">Clique para ampliar</p>
+            <p className="text-xs text-gray-300">{getImageLabel()}</p>
           </div>
         </div>
       </div>
@@ -115,6 +142,15 @@ export const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
           ))}
         </div>
       )}
+
+      {/* Modal para ampliar imagem */}
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageSrc={selectedImage || ''}
+        imageAlt={`${project.name} - ${getImageLabel()}`}
+        projectName={project.name}
+      />
     </div>
   );
 };
