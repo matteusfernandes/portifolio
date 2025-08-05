@@ -37,12 +37,12 @@ export const projects: Project[] = [
       'Implementar notificações em tempo real',
       'Configurar CI/CD e deploy automatizado'
     ],
-    image: '/images/projects/app-delivery/desktop-main.png',
+    image: '/images/projects/app-delivery/placeholder.svg',
     images: {
-      main: '/images/projects/app-delivery/desktop-main.png',
-      mobile: '/images/projects/app-delivery/mobile-view.png',
-      features: '/images/projects/app-delivery/features-demo.png',
-      dashboard: '/images/projects/app-delivery/dashboard.png'
+      main: '/images/projects/app-delivery/placeholder.svg',
+      mobile: '/images/projects/app-delivery/placeholder.svg',
+      features: '/images/projects/app-delivery/placeholder.svg',
+      dashboard: '/images/projects/app-delivery/placeholder.svg'
     },
     githubUrl: 'https://github.com/matteusfernandes/app-delivery',
     demoUrl: 'https://app-delivery-demo.vercel.app'
