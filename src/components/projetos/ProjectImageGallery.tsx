@@ -149,7 +149,6 @@ export const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
         onClose={() => setIsModalOpen(false)}
         imageSrc={selectedImage || ''}
         imageAlt={`${project.name} - ${getImageLabel()}`}
-        projectName={project.name}
       />
     </div>
   );

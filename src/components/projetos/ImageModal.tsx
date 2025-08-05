@@ -7,15 +7,13 @@ interface ImageModalProps {
   onClose: () => void;
   imageSrc: string;
   imageAlt: string;
-  projectName: string;
 }
 
 export const ImageModal: React.FC<ImageModalProps> = ({
   isOpen,
   onClose,
   imageSrc,
-  imageAlt,
-  projectName
+  imageAlt
 }) => {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
@@ -25,7 +23,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
     return () => document.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof window === 'undefined') return null;
 
   return createPortal(
     <div
@@ -58,6 +56,6 @@ export const ImageModal: React.FC<ImageModalProps> = ({
         />
       </div>
     </div>,
-    typeof window !== 'undefined' ? document.body : (null as any)
+    document.body
   );
 };
