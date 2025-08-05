@@ -76,6 +76,33 @@ export const projects: Project[] = [
   },
   {
     id: 3,
+    name: 'Library App',
+    tech: '_next.js & prisma',
+    description: '/API RESTful para livraria com frontend moderno',
+    skills: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+    detailedDescription: 'Sistema completo de gerenciamento de biblioteca com API RESTful e interface moderna.',
+    longDescription: 'Aplicação full-stack desenvolvida para processo seletivo, featuring sistema completo de CRUD para livros, autores e empréstimos. Backend Node.js robusto com frontend Next.js moderno, autenticação JWT, dashboard administrativo e relatórios em tempo real.',
+    category: 'Projeto Full-Stack - Next.js & TypeScript',
+    developedSkills: [
+      'Desenvolver API RESTful robusta',
+      'Implementar autenticação JWT',
+      'Criar dashboard administrativo',
+      'Integrar frontend com backend',
+      'Implementar sistema de relatórios',
+      'Configurar banco PostgreSQL com Prisma'
+    ],
+    image: '/images/projects/library-app/desktop-main.png',
+    images: {
+      main: '/images/projects/library-app/desktop-main.png',
+      mobile: '/images/projects/library-app/mobile-view.png',
+      features: '/images/projects/library-app/features-demo.png',
+      dashboard: '/images/projects/library-app/dashboard.png'
+    },
+    githubUrl: 'https://github.com/matteusfernandes/library-app',
+    demoUrl: 'https://library-app-demo.vercel.app'
+  },
+  {
+    id: 4,
     name: 'Recipe App',
     tech: '_react hooks & context api',
     description: '/App de receitas com favoritos e filtros',
@@ -94,7 +121,7 @@ export const projects: Project[] = [
     image: '/window.svg',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Tryunfo',
     tech: '_react & class components',
     description: '/Jogo de cartas estilo Super Trunfo',
@@ -112,7 +139,7 @@ export const projects: Project[] = [
     image: '/window.svg',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Star Wars Planets',
     tech: '_react hooks & context api',
     description: '/Filtro de planetas do universo Star Wars',
@@ -130,7 +157,7 @@ export const projects: Project[] = [
     image: '/window.svg',
   },
   {
-    id: 6,
+    id: 7,
     name: 'Store Manager',
     tech: '_node.js & mysql',
     description: '/API RESTful para gerenciamento de vendas',
@@ -148,7 +175,7 @@ export const projects: Project[] = [
     image: '/window.svg',
   },
   {
-    id: 7,
+    id: 8,
     name: 'Talker Manager',
     tech: '_node.js & express',
     description: '/API para cadastro de palestrantes',
