@@ -1,0 +1,15 @@
+<!-- Placeholder SVG -->
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#grad)"/>
+  <rect x="50" y="50" width="700" height="350" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="400" y="200" fill="#9ca3af" text-anchor="middle" font-family="Arial, sans-serif" font-size="24">App Delivery</text>
+  <text x="400" y="240" fill="#6b7280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16">Screenshot será adicionado em breve</text>
+  <circle cx="400" cy="280" r="30" fill="#4cc7b1" opacity="0.3"/>
+  <path d="M385 280 L395 290 L415 270" stroke="#4cc7b1" stroke-width="3" fill="none"/>
+</svg>
