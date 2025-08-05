@@ -121,6 +121,19 @@ export default function Projetos() {
   ];
 
   const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedTech, setSelectedTech] = useState('all');
+
+  // Extrair categorias e tecnologias únicas
+  const categories = ['all', ...new Set(projects.map(p => p.category.split(' - ')[0]))];
+  const technologies = ['all', ...new Set(projects.flatMap(p => p.skills))];
+
+  // Filtrar projetos
+  const filteredProjects = projects.filter(project => {
+    const categoryMatch = selectedCategory === 'all' || project.category.includes(selectedCategory);
+    const techMatch = selectedTech === 'all' || project.skills.includes(selectedTech);
+    return categoryMatch && techMatch;
+  });
 
   const getSkillIcon = (skill: string): { icon: React.ReactElement; color: string } => {
     const skillIcons: Record<string, { icon: React.ReactElement; color: string }> = {
@@ -242,43 +255,180 @@ export default function Projetos() {
 
           {/* Conteúdo principal - 60% da largura restante */}
           <div className="flex-[3] px-6 py-4 overflow-auto">
+            {/* Seção de Filtros */}
+            <div className="mb-6 p-4 bg-gray-800/30 border border-gray-700 rounded-lg">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-aqua-green text-sm">Filtros</h3>
+                <span className="text-light-gray text-xs">
+                  {filteredProjects.length} de {projects.length} projetos
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                {/* Filtro por categoria */}
+                <div className="flex flex-col">
+                  <label className="text-light-gray text-xs mb-1">Categoria</label>
+                  <select 
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1 focus:border-aqua-green focus:outline-none"
+                  >
+                    {categories.map(category => (
+                      <option key={category} value={category}>
+                        {category === 'all' ? 'Todas' : category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                {/* Filtro por tecnologia */}
+                <div className="flex flex-col">
+                  <label className="text-light-gray text-xs mb-1">Tecnologia</label>
+                  <select 
+                    value={selectedTech}
+                    onChange={(e) => setSelectedTech(e.target.value)}
+                    className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1 focus:border-aqua-green focus:outline-none"
+                  >
+                    {technologies.map(tech => (
+                      <option key={tech} value={tech}>
+                        {tech === 'all' ? 'Todas' : tech}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                {/* Botão de reset */}
+                <div className="flex flex-col justify-end">
+                  <button 
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedTech('all');
+                    }}
+                    className="bg-purple hover:bg-purple-dark text-white text-xs px-3 py-1 rounded transition-colors"
+                  >
+                    Limpar Filtros
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <AnimatedElement delay={0.1} animation="fade-in-up">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {projects.map((project) => (
+              {filteredProjects.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <div className="w-24 h-24 bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="rgba(156,163,175,1)">
+                      <path d="M12 2C13.1046 2 14 2.89543 14 4V9H19C19.5523 9 20 9.44772 20 10V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V10C4 9.44772 4.44772 9 5 9H10V4C10 2.89543 10.8954 2 12 2ZM12 4V9H12V4ZM6 11V20H18V11H6Z"></path>
+                    </svg>
+                  </div>
+                  <h3 className="text-light-gray text-lg mb-2">Nenhum projeto encontrado</h3>
+                  <p className="text-gray-500 text-sm mb-4">
+                    Tente ajustar os filtros para encontrar projetos correspondentes.
+                  </p>
+                  <button 
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedTech('all');
+                    }}
+                    className="bg-aqua-green hover:bg-aqua-green-dark text-black px-4 py-2 rounded text-sm font-medium transition-colors"
+                  >
+                    Limpar Filtros
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {filteredProjects.map((project) => (
                   <div 
                     key={project.id} 
-                    className={`bg-gray-800/50 border rounded-lg overflow-hidden hover:border-gray-600 transition-colors cursor-pointer ${
-                      selectedProject.id === project.id ? 'border-aqua-green' : 'border-gray-700'
+                    className={`bg-gray-800/50 border rounded-lg overflow-hidden hover:border-gray-600 hover:bg-gray-800/70 transition-all duration-300 cursor-pointer transform hover:scale-[1.02] ${
+                      selectedProject.id === project.id ? 'border-aqua-green shadow-lg shadow-aqua-green/20' : 'border-gray-700'
                     }`}
                     onClick={() => setSelectedProject(project)}
                   >
-                    {/* Project Header */}
+                    {/* Project Header com badges */}
                     <div className="p-4 border-b border-gray-700">
-                      <h3 className="text-purple text-sm mb-1">{project.name} <span className="text-light-gray">{'//'}</span> <span className="text-light-gray">{project.tech}</span></h3>
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-purple text-sm font-medium">{project.name}</h3>
+                        <div className="flex items-center space-x-1">
+                          <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full">
+                            Concluído
+                          </span>
+                          <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+                            Trybe
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-light-gray text-xs">
+                        <span className="text-light-gray">{'//'}</span> {project.tech}
+                      </p>
                     </div>
                     
-                    {/* Project Image/Preview */}
-                    <div className="h-48 bg-gray-900/50 flex items-center justify-center border-b border-gray-700">
-                      <div className="text-gray-500 text-center">
-                        <div className="w-16 h-16 bg-gray-700 rounded mx-auto mb-2 flex items-center justify-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    {/* Project Image/Preview com loading animado */}
+                    <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border-b border-gray-700 relative group">
+                      <div className="text-gray-500 text-center transition-all duration-300 group-hover:text-gray-400">
+                        <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto mb-2 flex items-center justify-center animate-pulse">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
                             <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255Z"></path>
                           </svg>
                         </div>
-                        <span className="text-xs">Preview em breve</span>
+                        <span className="text-xs">Preview em desenvolvimento</span>
+                      </div>
+                      {/* Overlay para hover */}
+                      <div className="absolute inset-0 bg-aqua-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="text-aqua-green text-sm font-medium">Clique para mais detalhes</span>
                       </div>
                     </div>
                     
-                    {/* Project Description */}
+                    {/* Project Description com chips de tecnologias */}
                     <div className="p-4">
-                      <p className="text-light-gray text-sm mb-4">{project.description}</p>
-                      <button className="bg-aqua-green hover:bg-aqua-green-dark text-black px-4 py-2 rounded text-sm font-medium transition-colors">
-                        View Project
-                      </button>
+                      <p className="text-light-gray text-sm mb-3">{project.description}</p>
+                      
+                      {/* Chips de tecnologias */}
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {project.skills.slice(0, 3).map((skill, index) => {
+                          const skillData = getSkillIcon(skill);
+                          return (
+                            <span 
+                              key={index}
+                              className={`${skillData.color} text-white text-xs px-2 py-1 rounded-full flex items-center space-x-1`}
+                            >
+                              <span className="w-3 h-3 flex items-center justify-center">
+                                {skillData.icon}
+                              </span>
+                              <span>{skill}</span>
+                            </span>
+                          );
+                        })}
+                        {project.skills.length > 3 && (
+                          <span className="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">
+                            +{project.skills.length - 3}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className="flex justify-end space-x-2">
+                        <button 
+                          className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded text-sm transition-colors group" 
+                          title="Ver no GitHub"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="group-hover:scale-110 transition-transform">
+                            <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"></path>
+                          </svg>
+                        </button>
+                        <button 
+                          className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded text-sm transition-colors group" 
+                          title="Ver Demo"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="group-hover:scale-110 transition-transform">
+                            <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L15 7.5V9.5H13V3H21ZM19 5H15V6.5L19 10V5Z"></path>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </AnimatedElement>
           </div>
 
@@ -291,37 +441,87 @@ export default function Projetos() {
           <div className="flex-[2] px-6 py-4 overflow-auto">
             <AnimatedElement delay={0.3} animation="slide-in-left">
               <div className="mb-6">
-                <h2 className="text-aqua-green text-xl mb-4">{selectedProject.name}</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-aqua-green text-xl font-semibold">{selectedProject.name}</h2>
+                  <div className="flex space-x-2">
+                    <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full">
+                      Finalizado
+                    </span>
+                  </div>
+                </div>
                 
-                {/* Preview do projeto selecionado */}
-                <div className="h-48 bg-gray-900/50 border border-gray-700 rounded mb-4 flex items-center justify-center">
-                  <div className="text-gray-500 text-center">
-                    <div className="w-16 h-16 bg-gray-700 rounded mx-auto mb-2 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                {/* Preview melhorado do projeto selecionado */}
+                <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-gray-700 rounded-lg mb-4 flex items-center justify-center relative group overflow-hidden">
+                  <div className="text-gray-500 text-center transition-all duration-300 group-hover:text-gray-400">
+                    <div className="w-20 h-20 bg-gray-700 rounded-lg mx-auto mb-3 flex items-center justify-center animate-pulse">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
                         <path d="M4.99255 12.9841C4.44027 12.9841 3.99255 13.4318 3.99255 13.9841C3.99255 14.5364 4.44027 14.9841 4.99255 14.9841H18.9926C19.5448 14.9841 19.9926 14.5364 19.9926 13.9841C19.9926 13.4318 19.5448 12.9841 18.9926 12.9841H4.99255Z"></path>
                       </svg>
                     </div>
-                    <span className="text-xs">Preview em breve</span>
+                    <span className="text-sm">Screenshot em breve</span>
                   </div>
+                  {/* Gradiente overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-aqua-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Botões de ação */}
+                <div className="flex space-x-3 mb-6">
+                  <button className="flex-1 bg-aqua-green hover:bg-aqua-green-dark text-black px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-aqua-green/20 flex items-center justify-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"></path>
+                    </svg>
+                    <span>GitHub</span>
+                  </button>
+                  <button className="flex-1 bg-purple hover:bg-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-purple/20 flex items-center justify-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L15 7.5V9.5H13V3H21ZM19 5H15V6.5L19 10V5Z"></path>
+                    </svg>
+                    <span>Demo</span>
+                  </button>
                 </div>
               </div>
 
-              <div className="mb-6">
-                <h3 className="text-purple text-sm mb-3">{selectedProject.category}</h3>
-                <p className="text-light-gray text-sm mb-4">
-                  • {selectedProject.detailedDescription}
-                </p>
-                <p className="text-light-gray text-sm mb-4">
-                  • {selectedProject.longDescription}
-                </p>
-              </div>
+              {/* Seção de informações com cards */}
+              <div className="space-y-4">
+                {/* Card de Categoria */}
+                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                  <h3 className="text-purple text-sm mb-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="mr-2">
+                      <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"></path>
+                    </svg>
+                    Categoria
+                  </h3>
+                  <p className="text-light-gray text-sm">{selectedProject.category}</p>
+                </div>
 
-              <div className="mb-6">
-                <h3 className="text-purple text-sm mb-3">Habilidades Desenvolvidas</h3>
-                <div className="text-light-gray text-sm space-y-1">
-                  {selectedProject.developedSkills.map((skill, index) => (
-                    <p key={index}>• {skill}</p>
-                  ))}
+                {/* Card de Descrição */}
+                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                  <h3 className="text-purple text-sm mb-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="mr-2">
+                      <path d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM5 5V19H19V5H5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H13V17H7V15Z"></path>
+                    </svg>
+                    Sobre o Projeto
+                  </h3>
+                  <p className="text-light-gray text-sm mb-3">{selectedProject.detailedDescription}</p>
+                  <p className="text-light-gray text-sm">{selectedProject.longDescription}</p>
+                </div>
+
+                {/* Card de Habilidades */}
+                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                  <h3 className="text-purple text-sm mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="mr-2">
+                      <path d="M12 1L21.5 6.5V17.5L12 23L2.5 17.5V6.5L12 1ZM12 3.311L4.5 7.653V16.347L12 20.689L19.5 16.347V7.653L12 3.311ZM12 16L8 12L9.5 10.5L12 13L16.5 8.5L18 10L12 16Z"></path>
+                    </svg>
+                    Habilidades Desenvolvidas
+                  </h3>
+                  <div className="space-y-2">
+                    {selectedProject.developedSkills.map((skill, index) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-aqua-green rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="text-light-gray text-sm">{skill}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </AnimatedElement>
