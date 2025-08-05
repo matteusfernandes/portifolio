@@ -9,6 +9,7 @@
 - App Delivery: Modernizado para Next.js + TypeScript + MongoDB
 - Trybe Wallet: Refatorado para Next.js + TypeScript + Zustand
 - Library App: Atualizado com frontend Next.js + TypeScript + Prisma
+- Ebytr To-Do List: Modernizado para Next.js + TypeScript
 
 🔄 PROJETOS EM ANDAMENTO:
 ------------------------
@@ -69,12 +70,12 @@
    - Ação Necessária: Interface web com Streamlit
    - Deploy: Streamlit Cloud
 
-9. ⭐⭐⭐ EBYTR TO-DO LIST
-   - Descrição: Projeto para processo seletivo
-   - Tech Stack: JavaScript
-   - Status Atual: Completo
-   - Ação Necessária: Modernizar UI
-   - Deploy: Netlify ou Vercel
+9. ✅ ⭐⭐⭐ EBYTR TO-DO LIST - ATUALIZADO
+   - Descrição: Lista de tarefas modernizada para processo seletivo
+   - Tech Stack: Next.js + TypeScript + Tailwind CSS
+   - Status Atual: Modernizado com interface responsiva
+   - Ação Concluída: ✅ Migrado para Next.js + TypeScript + UI moderna
+   - Deploy: ✅ Vercel com persistência local
 
 10. ⭐⭐ PORTFÓLIO ANTIGO
     - Descrição: matteusfernandes.github.io
@@ -195,8 +196,9 @@ TESTES:
 🔥 URGENTE (1-2 semanas):
 1. ✅ App Delivery - CONCLUÍDO
 2. ✅ Library App - CONCLUÍDO
-3. Melhorar Recruit BKS & Invite BKS (UI/UX)
-4. Atualizar documentação dos projetos existentes
+3. ✅ Ebytr To-Do List - CONCLUÍDO
+4. Melhorar Recruit BKS & Invite BKS (UI/UX)
+5. Atualizar documentação dos projetos existentes
 
 ⚡ IMPORTANTE (1 mês):
 1. Criar E-commerce full-stack
@@ -314,5 +316,5 @@ EMPREGO:
 🔄 Última atualização: 05/08/2025
 👨‍💻 Desenvolvedor: Matteus Fernandes
 🎯 Objetivo: Criar portfólio profissional diferenciado
-📈 Status: App Delivery, Trybe Wallet e Library App atualizados com sucesso!
+📈 Status: App Delivery, Trybe Wallet, Library App e Ebytr To-Do List atualizados com sucesso!
 ====================================================

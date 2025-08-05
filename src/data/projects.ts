@@ -192,4 +192,28 @@ export const projects: Project[] = [
     ],
     image: '/window.svg',
   },
+  {
+    id: 9,
+    name: 'Ebytr To-Do List',
+    tech: '_next.js & typescript',
+    description: '/Lista de tarefas modernizada para processo seletivo',
+    skills: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Local Storage', 'React Hooks'],
+    detailedDescription: 'Aplicação de lista de tarefas modernizada com interface limpa e responsiva.',
+    longDescription: 'Sistema completo de gerenciamento de tarefas desenvolvido para processo seletivo da Ebytr. Permite criar, editar, excluir e organizar tarefas com status de conclusão. Interface moderna e responsiva com persistência de dados local. Migrado para Next.js com TypeScript para melhor experiência do usuário.',
+    category: 'Projeto Full-Stack - Next.js & TypeScript',
+    developedSkills: [
+      'Modernizar aplicações JavaScript para TypeScript',
+      'Implementar interfaces responsivas modernas',
+      'Gerenciar estado local com React Hooks',
+      'Criar sistemas de CRUD intuitivos',
+      'Desenvolver aplicações para processos seletivos',
+      'Implementar persistência de dados no navegador'
+    ],
+    image: '/images/projects/todo-list/desktop-main.png',
+    images: {
+      main: '/images/projects/todo-list/desktop-main.png'
+    },
+    githubUrl: 'https://github.com/matteusfernandes/ebytr-todo-list',
+    demoUrl: 'https://ebytr-todo-list.vercel.app'
+  },
 ];
