@@ -18,7 +18,7 @@ const Navigation = () => {
     { label: '_hello', href: '/' },
     { label: '_sobre-mim', href: '/sobre-mim' },
     { label: '_projetos', href: '/projetos' },
-    { label: '_contato', href: '#contato' },
+    { label: '_contato', href: '/contato' },
   ];
 
   const toggleMobileMenu = () => {
@@ -72,18 +72,25 @@ const Navigation = () => {
       <div className="flex-1"></div>
 
       <div className="flex items-center h-full">
-        <a
+        <Link
           href={navItems[3].href}
-          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up hover:bg-white/5 transition-all duration-300`}
-          style={{ animationDelay: '600ms' }}
+          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up hover:bg-white/5 transition-all duration-300 ${
+            pathname.startsWith('/contato') ? 'border-b-5' : ''
+          }`}
+          style={{
+            ...(pathname.startsWith('/contato') ? { borderBottomColor: '#F4B460' } : {}),
+            animationDelay: '600ms'
+          }}
         >
           <span
-            className={`nav-typography transition-colors duration-200 hover:text-white`}
-            style={{ color: '#8896B0' }}
+            className={`nav-typography transition-colors duration-200 ${
+              pathname.startsWith('/contato') ? 'text-white' : 'hover:text-white'
+            }`}
+            style={pathname.startsWith('/contato') ? {} : { color: '#8896B0' }}
           >
             {navItems[3].label}
           </span>
-        </a>
+        </Link>
       </div>
     </nav>
 
@@ -107,7 +114,8 @@ const Navigation = () => {
             >
               {pathname === '/' ? 'home' : 
                pathname === '/sobre-mim' ? 'sobre-mim' :
-               pathname === '/projetos' ? 'projetos' : 'página'}
+               pathname === '/projetos' ? 'projetos' : 
+               pathname === '/contato' ? 'contato' : 'página'}
             </span>
           </div>
         </div>
@@ -138,7 +146,8 @@ const Navigation = () => {
           {navItems.map((item) => {
             const isActive = (item.href === '/' && pathname === '/') ||
               (item.href === '/sobre-mim' && pathname.startsWith('/sobre-mim')) ||
-              (item.href === '/projetos' && pathname.startsWith('/projetos'));
+              (item.href === '/projetos' && pathname.startsWith('/projetos')) ||
+              (item.href === '/contato' && pathname.startsWith('/contato'));
             
             return (
               <div key={item.label} className="border-b border-light-gray/10 last:border-b-0 relative">
@@ -150,51 +159,29 @@ const Navigation = () => {
                   ></div>
                 )}
                 
-                {item.href.startsWith('#') ? (
-                  <a
-                    href={item.href}
-                    className={`block py-4 px-6 nav-typography transition-all duration-200 relative ${
-                      isActive 
-                        ? 'text-white bg-white/10 border-l-transparent' 
-                        : 'text-light-gray hover:text-white hover:bg-white/5'
-                    }`}
-                    style={{
-                      paddingLeft: isActive ? '1.75rem' : '1.5rem'
-                    }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-yellow-400 text-sm">
-                        ●
-                      </span>
-                    )}
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`block py-4 px-6 nav-typography transition-all duration-200 relative ${
-                      isActive 
-                        ? 'text-white bg-white/10 border-l-transparent' 
-                        : 'text-light-gray hover:text-white hover:bg-white/5'
-                    }`}
-                    style={{
-                      paddingLeft: isActive ? '1.75rem' : '1.5rem'
-                    }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    scroll={false}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <span 
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm"
-                        style={{ color: '#F4B460' }}
-                      >
-                        ●
-                      </span>
-                    )}
-                  </Link>
-                )}
+                <Link
+                  href={item.href}
+                  className={`block py-4 px-6 nav-typography transition-all duration-200 relative ${
+                    isActive 
+                      ? 'text-white bg-white/10 border-l-transparent' 
+                      : 'text-light-gray hover:text-white hover:bg-white/5'
+                  }`}
+                  style={{
+                    paddingLeft: isActive ? '1.75rem' : '1.5rem'
+                  }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  scroll={false}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span 
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm"
+                      style={{ color: '#F4B460' }}
+                    >
+                      ●
+                    </span>
+                  )}
+                </Link>
               </div>
             );
           })}
