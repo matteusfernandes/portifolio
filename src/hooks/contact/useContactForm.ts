@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
-
-interface ContactFormData {
-  nome: string;
-  email: string;
-  assunto: string;
-  mensagem: string;
-}
+import { ContactFormData, SubmitStatus } from '@/types/contact';
 
 interface UseContactFormReturn {
   isSubmitting: boolean;
-  submitStatus: 'idle' | 'success' | 'error';
+  submitStatus: SubmitStatus;
   submitForm: (formData: ContactFormData) => Promise<void>;
   resetStatus: () => void;
 }
@@ -23,7 +17,7 @@ const logError = (error: unknown, context: string) => {
 
 export const useContactForm = (): UseContactFormReturn => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
   const resetStatus = () => {
     setSubmitStatus('idle');
