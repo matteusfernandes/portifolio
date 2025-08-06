@@ -45,45 +45,45 @@ const Navigation = () => {
               (item.href === '/sobre-mim' && pathname.startsWith('/sobre-mim')) ||
               (item.href === '/projetos' && pathname.startsWith('/projetos'));
             return (
-              <div
+              <Link
                 key={item.label}
+                href={item.href}
+                scroll={false}
                 className={`nav-section h-full flex items-center justify-center px-6 border-r border-light-gray/20 transition-all duration-300 ${
                   isActive ? 'border-b-5' : ''
-                }`}
+                } hover:bg-white/5`}
                 style={{
                   ...(isActive ? { borderBottomColor: '#F4B460' } : {})
                 }}
               >
-                <Link
-                  href={item.href}
-                className={`nav-typography transition-colors duration-200 ${
-                  isActive ? 'text-white' : 'hover:text-white'
-                }`}
-                style={isActive ? {} : { color: '#8896B0' }}
-                scroll={false}
-              >
-                {item.label}
+                <span
+                  className={`nav-typography transition-colors duration-200 ${
+                    isActive ? 'text-white' : 'hover:text-white'
+                  }`}
+                  style={isActive ? {} : { color: '#8896B0' }}
+                >
+                  {item.label}
+                </span>
               </Link>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
 
       <div className="flex-1"></div>
 
       <div className="flex items-center h-full">
-        <div
-          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up`}
+        <a
+          href={navItems[3].href}
+          className={`nav-section h-full flex items-center justify-center px-6 border-l border-light-gray/20 animate-fade-in-up hover:bg-white/5 transition-all duration-300`}
           style={{ animationDelay: '600ms' }}
         >
-          <a
-            href={navItems[3].href}
+          <span
             className={`nav-typography transition-colors duration-200 hover:text-white`}
             style={{ color: '#8896B0' }}
           >
             {navItems[3].label}
-          </a>
-        </div>
+          </span>
+        </a>
       </div>
     </nav>
 
