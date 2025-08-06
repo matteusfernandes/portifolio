@@ -34,8 +34,8 @@ export default function ContatoPage() {
   const contactInfo: ContactInfo[] = [
     {
       label: '_email',
-      value: 'matteus.fernandes@exemplo.com',
-      link: 'mailto:matteus.fernandes@exemplo.com',
+      value: 'matteus_gbi@hotmail.com',
+      link: 'mailto:matteus_gbi@hotmail.com',
       icon: '📧'
     },
     {
@@ -52,7 +52,7 @@ export default function ContatoPage() {
     },
     {
       label: '_telefone',
-      value: '+55 (11) 99999-9999',
+      value: '+55 (77) 99109-9699',
       icon: '📱'
     }
   ];
@@ -591,123 +591,189 @@ export default function ContatoPage() {
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden p-4 space-y-6">
-          <div className="text-center">
-            <h1 className="text-2xl text-white font-fira-code mb-2">_contato</h1>
-            <p className="text-light-gray text-sm">
-              Entre em contato comigo
-            </p>
+        <div className="md:hidden flex flex-col min-h-screen">
+          {/* Mobile Header */}
+          <div className="px-4 py-6 bg-gradient-to-b from-transparent to-dark-blue/10">
+            <AnimatedElement delay={0.1} animation="fade-in-up">
+              <div className="text-center mb-6">
+                <h1 className="text-3xl text-white font-fira-code mb-3">
+                  <TypewriterText text="_contato" speed={120} />
+                </h1>
+                <div className="text-light-gray text-sm">
+                  <TypewriterText 
+                    text="// Entre em contato comigo" 
+                    speed={60} 
+                    delay={800}
+                  />
+                </div>
+              </div>
+            </AnimatedElement>
           </div>
 
-          <div className="space-y-3">
-            {contactInfo.map((info, index) => (
-              <div key={index} className="p-4 bg-dark-blue/30 rounded-md">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">{info.icon}</span>
-                  <div>
-                    <div className="text-light-gray font-fira-code text-xs">
-                      {info.label}
+          <div className="flex-1 px-4 pb-6 space-y-8">
+            {/* Contact Info Cards */}
+            <AnimatedElement delay={0.2} animation="fade-in-up">
+              <div className="space-y-4">
+                <h3 className="text-white font-fira-code text-lg mb-4">_informações</h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {contactInfo.map((info, index) => (
+                    <div key={index} className="bg-dark-blue/30 border border-gray-600/50 rounded-lg p-4 hover:bg-dark-blue/40 transition-colors">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
+                          <span className="text-lg">{info.icon}</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-light-gray font-fira-code text-xs mb-1">
+                            {info.label}
+                          </div>
+                          {info.link ? (
+                            <a
+                              href={info.link}
+                              target={info.link.startsWith('http') ? '_blank' : '_self'}
+                              rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                              className="text-white hover:text-accent transition-colors font-fira-code text-xs break-all"
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <span className="text-white font-fira-code text-xs">
+                              {info.value}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    {info.link ? (
-                      <a
-                        href={info.link}
-                        target={info.link.startsWith('http') ? '_blank' : '_self'}
-                        rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-white hover:text-sandy-brown transition-colors font-fira-code text-sm"
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <span className="text-white font-fira-code text-sm">
-                        {info.value}
-                      </span>
-                    )}
+                  ))}
+                </div>
+              </div>
+            </AnimatedElement>
+
+            {/* Contact Form */}
+            <AnimatedElement delay={0.3} animation="fade-in-up">
+              <div>
+                <h3 className="text-white font-fira-code text-lg mb-4">_formulário</h3>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label className="block text-sm text-light-gray mb-2 font-fira-code">
+                        _nome:
+                      </label>
+                      <input
+                        type="text"
+                        name="nome"
+                        placeholder="Seu nome completo"
+                        value={formData.nome}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full p-4 bg-dark-blue/50 border border-light-gray/30 rounded-lg text-white font-fira-code text-sm focus:outline-none focus:border-white/60 focus:bg-dark-blue/70 transition-all placeholder-light-gray/50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-light-gray mb-2 font-fira-code">
+                        _email:
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="seu@email.com"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full p-4 bg-dark-blue/50 border border-light-gray/30 rounded-lg text-white font-fira-code text-sm focus:outline-none focus:border-white/60 focus:bg-dark-blue/70 transition-all placeholder-light-gray/50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-light-gray mb-2 font-fira-code">
+                        _assunto:
+                      </label>
+                      <input
+                        type="text"
+                        name="assunto"
+                        placeholder="Sobre o que você quer falar?"
+                        value={formData.assunto}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full p-4 bg-dark-blue/50 border border-light-gray/30 rounded-lg text-white font-fira-code text-sm focus:outline-none focus:border-white/60 focus:bg-dark-blue/70 transition-all placeholder-light-gray/50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-light-gray mb-2 font-fira-code">
+                        _mensagem:
+                      </label>
+                      <textarea
+                        name="mensagem"
+                        placeholder="Conte-me mais sobre seu projeto ou ideia..."
+                        value={formData.mensagem}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        className="w-full p-4 bg-dark-blue/50 border border-light-gray/30 rounded-lg text-white font-fira-code text-sm focus:outline-none focus:border-white/60 focus:bg-dark-blue/70 transition-all placeholder-light-gray/50 resize-vertical"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !isFormValid}
+                    className="w-full p-4 bg-white/10 border border-white/20 text-white font-fira-code font-bold rounded-lg hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-base"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+                  </button>
+
+                  {submitStatus === 'success' && (
+                    <div className="p-4 bg-green-400/10 border border-green-400/30 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 bg-green-400/20 rounded-full flex items-center justify-center">
+                          <span className="text-green-400 text-sm">✓</span>
+                        </div>
+                        <p className="text-green-400 font-fira-code text-sm">
+                          Mensagem enviada com sucesso!
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="p-4 bg-red-400/10 border border-red-400/30 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 bg-red-400/20 rounded-full flex items-center justify-center">
+                          <span className="text-red-400 text-sm">✗</span>
+                        </div>
+                        <p className="text-red-400 font-fira-code text-sm">
+                          Erro ao enviar. Tente novamente.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </form>
+              </div>
+            </AnimatedElement>
+
+            {/* Status Cards */}
+            <AnimatedElement delay={0.4} animation="fade-in-up">
+              <div className="space-y-3">
+                <div className="bg-green-400/10 border border-green-400/30 rounded-lg p-4">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-green-400 font-fira-code text-sm font-medium">
+                      Disponível para novos projetos
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="bg-accent/10 border border-accent/30 rounded-lg p-4">
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-accent text-lg">⏱️</span>
+                    <span className="text-accent font-fira-code text-sm font-medium">
+                      Resposta em até 24 horas
+                    </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="nome"
-              placeholder="_nome"
-              value={formData.nome}
-              onChange={handleInputChange}
-              required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="_email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
-            />
-
-            <input
-              type="text"
-              name="assunto"
-              placeholder="_assunto"
-              value={formData.assunto}
-              onChange={handleInputChange}
-              required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
-            />
-
-            <textarea
-              name="mensagem"
-              placeholder="_mensagem"
-              value={formData.mensagem}
-              onChange={handleInputChange}
-              required
-              rows={4}
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50 resize-vertical"
-            />
-
-            <button
-              type="submit"
-              disabled={isSubmitting || !isFormValid}
-              className="w-full p-3 bg-white/10 border border-white/20 text-white font-fira-code font-bold rounded-md hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-            </button>
-
-            {submitStatus === 'success' && (
-              <div className="p-4 bg-green-400/10 border border-green-400/20 rounded-md">
-                <p className="text-green-400 font-fira-code text-sm">
-                  ✓ Mensagem enviada com sucesso!
-                </p>
-              </div>
-            )}
-
-            {submitStatus === 'error' && (
-              <div className="p-4 bg-red-400/10 border border-red-400/20 rounded-md">
-                <p className="text-red-400 font-fira-code text-sm">
-                  ✗ Erro ao enviar mensagem. Tente novamente.
-                </p>
-              </div>
-            )}
-          </form>
-
-          <div className="space-y-3">
-            <div className="p-3 bg-green-400/10 border border-green-400/20 rounded text-center">
-              <div className="flex items-center justify-center gap-2 text-green-400 font-fira-code text-xs">
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                Disponível para projetos
-              </div>
-            </div>
-            
-            <div className="p-3 bg-sandy-brown/10 border border-sandy-brown/20 rounded text-center">
-              <div className="flex items-center justify-center gap-2 text-sandy-brown font-fira-code text-xs">
-                <span>⏱️</span>
-                Resposta em até 24h
-              </div>
-            </div>
+            </AnimatedElement>
           </div>
         </div>
       </main>
