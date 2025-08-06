@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: 'Matteus Fernandes - Desenvolvedor Full Stack',
   description:
     'Portfólio de Matteus Fernandes, Desenvolvedor Full Stack especializado em Node.js, React, JavaScript e MongoDB',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    apple: '/apple-touch-icon.svg',
+  },
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
