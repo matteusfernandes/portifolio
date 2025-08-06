@@ -91,9 +91,26 @@ const Navigation = () => {
     <nav className="md:hidden w-full bg-transparent border-b border-light-gray/20 relative">
       {/* Mobile Header */}
       <div className="flex items-center justify-between h-16 px-4">
-        <span className="nav-typography text-light-gray">
-          Matteus Fernandes
-        </span>
+        <div className="flex items-center space-x-3">
+          <span className="nav-typography text-light-gray">
+            Matteus Fernandes
+          </span>
+          {/* Current page indicator */}
+          <div className="flex items-center space-x-1">
+            <span className="text-light-gray text-xs">/</span>
+            <span 
+              className="text-xs font-mono px-2 py-1 rounded"
+              style={{ 
+                backgroundColor: '#F4B460', 
+                color: '#1a1a1a' 
+              }}
+            >
+              {pathname === '/' ? 'home' : 
+               pathname === '/sobre-mim' ? 'sobre-mim' :
+               pathname === '/projetos' ? 'projetos' : 'página'}
+            </span>
+          </div>
+        </div>
         
         {/* Hamburger Menu Button */}
         <button
@@ -124,27 +141,58 @@ const Navigation = () => {
               (item.href === '/projetos' && pathname.startsWith('/projetos'));
             
             return (
-              <div key={item.label} className="border-b border-light-gray/10 last:border-b-0">
+              <div key={item.label} className="border-b border-light-gray/10 last:border-b-0 relative">
+                {/* Active indicator - left border */}
+                {isActive && (
+                  <div 
+                    className="absolute left-0 top-0 bottom-0 w-1 bg-yellow-400 rounded-r-sm"
+                    style={{ backgroundColor: '#F4B460' }}
+                  ></div>
+                )}
+                
                 {item.href.startsWith('#') ? (
                   <a
                     href={item.href}
-                    className={`block py-4 px-6 nav-typography transition-colors duration-200 ${
-                      isActive ? 'text-white bg-white/5' : 'text-light-gray hover:text-white hover:bg-white/5'
+                    className={`block py-4 px-6 nav-typography transition-all duration-200 relative ${
+                      isActive 
+                        ? 'text-white bg-white/10 border-l-transparent' 
+                        : 'text-light-gray hover:text-white hover:bg-white/5'
                     }`}
+                    style={{
+                      paddingLeft: isActive ? '1.75rem' : '1.5rem'
+                    }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
+                    {isActive && (
+                      <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-yellow-400 text-sm">
+                        ●
+                      </span>
+                    )}
                   </a>
                 ) : (
                   <Link
                     href={item.href}
-                    className={`block py-4 px-6 nav-typography transition-colors duration-200 ${
-                      isActive ? 'text-white bg-white/5' : 'text-light-gray hover:text-white hover:bg-white/5'
+                    className={`block py-4 px-6 nav-typography transition-all duration-200 relative ${
+                      isActive 
+                        ? 'text-white bg-white/10 border-l-transparent' 
+                        : 'text-light-gray hover:text-white hover:bg-white/5'
                     }`}
+                    style={{
+                      paddingLeft: isActive ? '1.75rem' : '1.5rem'
+                    }}
                     onClick={() => setIsMobileMenuOpen(false)}
                     scroll={false}
                   >
                     {item.label}
+                    {isActive && (
+                      <span 
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm"
+                        style={{ color: '#F4B460' }}
+                      >
+                        ●
+                      </span>
+                    )}
                   </Link>
                 )}
               </div>
