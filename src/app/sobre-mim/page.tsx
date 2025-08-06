@@ -150,8 +150,8 @@ export default function SobreMim() {
     <div className="page-layout bg-gradient-main text-white font-mono relative overflow-hidden">
       <Navigation />
 
-      {/* Tab bar - sempre visível como no layout original */}
-      <div className="w-full border-b border-gray-600 bg-gradient-main flex" style={{ height: '60px' }}>
+      {/* Tab bar - esconder em mobile */}
+      <div className="hidden md:flex w-full border-b border-gray-600 bg-gradient-main" style={{ height: '60px' }}>
         <div className="border-r border-gray-600 flex items-center justify-center" style={{ width: '280px' }}>
           <span className="text-light-gray text-sm" style={{ fontSize: '15px' }}>info-pessoal</span>
         </div>
@@ -182,7 +182,8 @@ export default function SobreMim() {
       </div>
 
       <main className="flex-1 w-full h-full">
-        <div className="flex h-full min-h-screen">
+        {/* Layout Desktop */}
+        <div className="hidden md:flex h-full min-h-screen">
           {/* Sidebar - Explorador de arquivos */}
           <div className="border-r border-gray-600" style={{ width: '280px' }}>
             <div className="p-4 mb-4">
@@ -437,6 +438,96 @@ export default function SobreMim() {
           {/* Gap após sidebar direita */}
           <div className="w-6 border border-gray-600 relative">
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-400"></div>
+          </div>
+        </div>
+
+        {/* Layout Mobile */}
+        <div className="md:hidden flex flex-col min-h-screen">
+          {/* Mobile title and tabs */}
+          <div className="px-4 py-3 border-b border-gray-600">
+            <h1 className="text-lg font-mono text-white mb-3">Sobre mim</h1>
+            
+            {/* Mobile tabs if any open */}
+            {openTabs.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {openTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    className={`px-3 py-1.5 rounded text-xs border ${
+                      activeTab === tab.id 
+                        ? 'bg-aqua-green text-black border-aqua-green' 
+                        : 'bg-gray-800 text-light-gray border-gray-600'
+                    }`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    {tab.name.replace('.txt', '')}
+                    <span 
+                      className="ml-2 hover:text-red-400"
+                      onClick={(e) => closeTab(tab.id, e)}
+                    >
+                      ×
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Mobile content */}
+          <div className="flex-1 px-4 py-4 overflow-auto">
+            {getCurrentTabContent() || (
+              <div className="space-y-6">
+                {/* Default content */}
+                <div>
+                  <h2 className="text-xl font-bold mb-4 text-purple">Navegação</h2>
+                  <div className="text-gray-300 text-sm space-y-2">
+                    <p>📂 Clique nas pastas para expandir</p>
+                    <p>📄 Clique nos arquivos para abrir</p>
+                    <p>❌ Use o × para fechar abas</p>
+                  </div>
+                </div>
+
+                {/* Mobile file tree */}
+                <div>
+                  <h3 className="text-aqua-green text-sm mb-3">Explorar arquivos:</h3>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-3">
+                    <div className="space-y-2">
+                      {renderFileTree(fileStructure)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Skills overview */}
+                <div>
+                  <h3 className="text-purple text-sm mb-3">Resumo de Skills:</h3>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-3">
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>JavaScript</div>
+                      <div>React</div>
+                      <div>Node.js</div>
+                      <div>TypeScript</div>
+                      <div>MongoDB</div>
+                      <div>MySQL</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contact info */}
+                <div>
+                  <h3 className="text-aqua-green text-sm mb-3">Contato:</h3>
+                  <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-3 space-y-2">
+                    <div className="flex items-center space-x-2 text-xs">
+                      <span>📧</span>
+                      <span className="text-light-gray">matteus_gbi@hotmail.com</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-xs">
+                      <span>📱</span>
+                      <span className="text-light-gray">(77) 99109-9699</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>
