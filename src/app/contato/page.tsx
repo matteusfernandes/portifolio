@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { TypewriterText } from '@/components/TypewriterText';
 import { AnimatedElement } from '@/components/AnimatedElement';
+import { useContactForm } from '@/hooks/useContactForm';
 
 interface FormData {
   nome: string;
@@ -28,8 +29,7 @@ export default function ContatoPage() {
     mensagem: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const { isSubmitting, submitStatus, submitForm, resetStatus } = useContactForm();
 
   const contactInfo: ContactInfo[] = [
     {
@@ -67,22 +67,20 @@ export default function ContatoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setSubmitStatus('success');
-      setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
-      
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    } catch {
-      setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    } finally {
-      setIsSubmitting(false);
+      await submitForm(formData);
+    } catch (error) {
+      console.error('Erro no formulário:', error);
     }
   };
+
+  // Resetar formulário quando enviado com sucesso
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
+    }
+  }, [submitStatus]);
 
   const isFormValid = formData.nome.trim() !== '' && 
                      formData.email.trim() !== '' && 
@@ -184,20 +182,48 @@ export default function ContatoPage() {
             <div className="flex-1 p-8 overflow-auto">
               <AnimatedElement delay={0.1} animation="fade-in-up">
                 <div className="max-w-2xl">
-                  <div className="mb-8">
-                    <h2 className="text-white text-2xl mb-6 font-fira-code">
-                      <TypewriterText text="Entre em contato" speed={100} />
-                    </h2>
-                    <div className="text-light-gray">
-                      <TypewriterText 
-                        text="// Preencha o formulário abaixo para entrar em contato comigo" 
-                        speed={50} 
-                        delay={1000}
-                      />
+                  {submitStatus === 'success' ? (
+                    <div className="text-center py-16">
+                      <div className="mb-8">
+                        <div className="w-20 h-20 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <h2 className="text-white text-3xl mb-4 font-fira-code">
+                          Obrigado!
+                        </h2>
+                        <p className="text-light-gray text-lg mb-6">
+                          Sua mensagem foi enviada com sucesso.
+                        </p>
+                        <p className="text-light-gray text-sm mb-8">
+                          Entrarei em contato em breve!
+                        </p>
+                      </div>
+                      
+                      <button
+                        onClick={resetStatus}
+                        className="px-6 py-3 bg-white/10 border border-white/20 text-white font-fira-code rounded-md hover:bg-white/20 hover:border-white/30 transition-colors"
+                      >
+                        Enviar Nova Mensagem
+                      </button>
                     </div>
-                  </div>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  ) : (
+                    <>
+                      <div className="mb-8">
+                        <h2 className="text-white text-2xl mb-6 font-fira-code">
+                          <TypewriterText text="Entre em contato" speed={100} />
+                        </h2>
+                        <div className="text-light-gray">
+                          <TypewriterText 
+                            text="// Preencha o formulário abaixo para entrar em contato comigo" 
+                            speed={50} 
+                            delay={1000}
+                          />
+                        </div>
+                      </div>
+                      
+                      <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="nome" className="block text-sm text-light-gray mb-2 font-fira-code">
                         _nome:
@@ -266,14 +292,6 @@ export default function ContatoPage() {
                       {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                     </button>
 
-                    {submitStatus === 'success' && (
-                      <div className="p-4 bg-green-400/10 border border-green-400/20 rounded-md">
-                        <p className="text-green-400 font-fira-code text-sm">
-                          ✓ Mensagem enviada com sucesso!
-                        </p>
-                      </div>
-                    )}
-
                     {submitStatus === 'error' && (
                       <div className="p-4 bg-red-400/10 border border-red-400/20 rounded-md">
                         <p className="text-red-400 font-fira-code text-sm">
@@ -282,6 +300,8 @@ export default function ContatoPage() {
                       </div>
                     )}
                   </form>
+                  </>
+                  )}
                 </div>
               </AnimatedElement>
             </div>
@@ -651,8 +671,36 @@ export default function ContatoPage() {
             {/* Contact Form */}
             <AnimatedElement delay={0.3} animation="fade-in-up">
               <div>
-                <h3 className="text-white font-fira-code text-lg mb-4">_formulário</h3>
-                <form onSubmit={handleSubmit} className="space-y-5">
+                {submitStatus === 'success' ? (
+                  <div className="text-center py-12">
+                    <div className="mb-8">
+                      <div className="w-16 h-16 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <h3 className="text-white text-2xl mb-4 font-fira-code">
+                        Obrigado!
+                      </h3>
+                      <p className="text-light-gray text-base mb-4">
+                        Sua mensagem foi enviada com sucesso.
+                      </p>
+                      <p className="text-light-gray text-sm mb-8">
+                        Entrarei em contato em breve!
+                      </p>
+                    </div>
+                    
+                    <button
+                      onClick={resetStatus}
+                      className="px-6 py-3 bg-white/10 border border-white/20 text-white font-fira-code rounded-lg hover:bg-white/20 hover:border-white/30 transition-colors"
+                    >
+                      Enviar Nova Mensagem
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <h3 className="text-white font-fira-code text-lg mb-4">_formulário</h3>
+                    <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block text-sm text-light-gray mb-2 font-fira-code">
@@ -723,19 +771,6 @@ export default function ContatoPage() {
                     {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                   </button>
 
-                  {submitStatus === 'success' && (
-                    <div className="p-4 bg-green-400/10 border border-green-400/30 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-green-400/20 rounded-full flex items-center justify-center">
-                          <span className="text-green-400 text-sm">✓</span>
-                        </div>
-                        <p className="text-green-400 font-fira-code text-sm">
-                          Mensagem enviada com sucesso!
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
                   {submitStatus === 'error' && (
                     <div className="p-4 bg-red-400/10 border border-red-400/30 rounded-lg">
                       <div className="flex items-center gap-3">
@@ -749,6 +784,8 @@ export default function ContatoPage() {
                     </div>
                   )}
                 </form>
+                </>
+                )}
               </div>
             </AnimatedElement>
 
