@@ -84,6 +84,11 @@ export default function ContatoPage() {
     }
   };
 
+  const isFormValid = formData.nome.trim() !== '' && 
+                     formData.email.trim() !== '' && 
+                     formData.assunto.trim() !== '' && 
+                     formData.mensagem.trim() !== '';
+
   return (
     <div className="page-layout bg-gradient-main text-white font-mono relative overflow-hidden">
       <Navigation />
@@ -204,7 +209,7 @@ export default function ContatoPage() {
                         value={formData.nome}
                         onChange={handleInputChange}
                         required
-                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-accent transition-colors"
+                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors"
                       />
                     </div>
 
@@ -219,7 +224,7 @@ export default function ContatoPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-accent transition-colors"
+                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors"
                       />
                     </div>
 
@@ -234,7 +239,7 @@ export default function ContatoPage() {
                         value={formData.assunto}
                         onChange={handleInputChange}
                         required
-                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-accent transition-colors"
+                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors"
                       />
                     </div>
 
@@ -249,14 +254,14 @@ export default function ContatoPage() {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-accent transition-colors resize-vertical"
+                        className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors resize-vertical"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      disabled={isSubmitting}
-                      className="w-full p-3 bg-accent text-white font-fira-code font-bold rounded-md hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      disabled={isSubmitting || !isFormValid}
+                      className="w-full p-3 bg-white/10 border border-white/20 text-white font-fira-code font-bold rounded-md hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                     </button>
@@ -631,7 +636,7 @@ export default function ContatoPage() {
               value={formData.nome}
               onChange={handleInputChange}
               required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-sandy-brown transition-colors placeholder-light-gray/50"
+              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
             />
 
             <input
@@ -641,7 +646,7 @@ export default function ContatoPage() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-sandy-brown transition-colors placeholder-light-gray/50"
+              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
             />
 
             <input
@@ -651,7 +656,7 @@ export default function ContatoPage() {
               value={formData.assunto}
               onChange={handleInputChange}
               required
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-sandy-brown transition-colors placeholder-light-gray/50"
+              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50"
             />
 
             <textarea
@@ -661,13 +666,13 @@ export default function ContatoPage() {
               onChange={handleInputChange}
               required
               rows={4}
-              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-sandy-brown transition-colors placeholder-light-gray/50 resize-vertical"
+              className="w-full p-3 bg-dark-blue/50 border border-light-gray/30 rounded-md text-white font-fira-code text-sm focus:outline-none focus:border-white/60 transition-colors placeholder-light-gray/50 resize-vertical"
             />
 
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full p-3 bg-accent text-white font-fira-code font-bold rounded-md hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              disabled={isSubmitting || !isFormValid}
+              className="w-full p-3 bg-white/10 border border-white/20 text-white font-fira-code font-bold rounded-md hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
             </button>
