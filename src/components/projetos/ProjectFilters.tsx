@@ -24,21 +24,21 @@ export const ProjectFilters: React.FC<FiltersProps> = ({
   onClearFilters
 }) => {
   return (
-    <div className="mb-6 p-4 bg-gray-800/30 border border-gray-700 rounded-lg">
+    <div className="mb-4 md:mb-6 p-3 md:p-4 bg-gray-800/30 border border-gray-700 rounded-lg">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-aqua-green text-sm">Filtros</h3>
         <span className="text-light-gray text-xs">
           {filteredProjectsCount} de {totalProjectsCount} projetos
         </span>
       </div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
         {/* Filtro por categoria */}
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-w-[120px]">
           <label className="text-light-gray text-xs mb-1">Categoria</label>
           <select 
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1 focus:border-aqua-green focus:outline-none"
+            className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1.5 md:py-1 focus:border-aqua-green focus:outline-none"
           >
             {categories.map(category => (
               <option key={category} value={category}>
@@ -49,12 +49,12 @@ export const ProjectFilters: React.FC<FiltersProps> = ({
         </div>
         
         {/* Filtro por tecnologia */}
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1 min-w-[120px]">
           <label className="text-light-gray text-xs mb-1">Tecnologia</label>
           <select 
             value={selectedTech}
             onChange={(e) => onTechChange(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1 focus:border-aqua-green focus:outline-none"
+            className="bg-gray-800 border border-gray-600 text-white text-xs rounded px-2 py-1.5 md:py-1 focus:border-aqua-green focus:outline-none"
           >
             {technologies.map(tech => (
               <option key={tech} value={tech}>
@@ -68,7 +68,7 @@ export const ProjectFilters: React.FC<FiltersProps> = ({
         <div className="flex flex-col justify-end">
           <button 
             onClick={onClearFilters}
-            className="bg-purple hover:bg-purple-dark text-white text-xs px-3 py-1 rounded transition-colors"
+            className="bg-purple hover:bg-purple-dark text-white text-xs px-3 py-1.5 md:py-1 rounded transition-colors whitespace-nowrap"
           >
             Limpar Filtros
           </button>

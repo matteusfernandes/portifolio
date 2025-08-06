@@ -29,14 +29,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       onClick={onClick}
     >
       {/* Project Header com badges */}
-      <div className="p-4 border-b border-gray-700">
+      <div className="p-3 md:p-4 border-b border-gray-700">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-purple text-sm font-medium">{project.name}</h3>
-          <div className="flex items-center space-x-1">
-            <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full">
+          <h3 className="text-purple text-sm md:text-base font-medium truncate mr-2">{project.name}</h3>
+          <div className="flex items-center space-x-1 flex-shrink-0">
+            <span className="bg-green-600 text-white text-xs px-1.5 py-0.5 md:px-2 md:py-1 rounded-full">
               Concluído
             </span>
-            <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+            <span className="bg-blue-600 text-white text-xs px-1.5 py-0.5 md:px-2 md:py-1 rounded-full">
               Trybe
             </span>
           </div>
@@ -47,7 +47,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       
       {/* Project Image/Preview */}
-      <div className="h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border-b border-gray-700 relative group overflow-hidden">
+      <div className="h-32 md:h-48 bg-gradient-to-br from-gray-900/50 to-gray-800/50 flex items-center justify-center border-b border-gray-700 relative group overflow-hidden">
         {!imageError && previewImage ? (
           <Image
             src={previewImage}
@@ -74,19 +74,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       
       {/* Project Description com chips de tecnologias */}
-      <div className="p-4">
-        <p className="text-light-gray text-sm mb-3">{project.description}</p>
+      <div className="p-3 md:p-4">
+        <p className="text-light-gray text-xs md:text-sm mb-3">{project.description}</p>
         
         {/* Chips de tecnologias */}
-        <div className="flex flex-wrap gap-1 mb-4">
+        <div className="flex flex-wrap gap-1 mb-3 md:mb-4">
           {project.skills.slice(0, 3).map((skill, index) => {
             const skillData = getSkillIcon(skill);
             return (
               <span 
                 key={index}
-                className={`${skillData.color} text-white text-xs px-2 py-1 rounded-full flex items-center space-x-1`}
+                className={`${skillData.color} text-white text-xs px-1.5 py-0.5 md:px-2 md:py-1 rounded-full flex items-center space-x-1`}
               >
-                <span className="w-3 h-3 flex items-center justify-center">
+                <span className="w-2.5 h-2.5 md:w-3 md:h-3 flex items-center justify-center">
                   {skillData.icon}
                 </span>
                 <span>{skill}</span>
@@ -100,28 +100,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           )}
         </div>
         
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-end space-x-1 md:space-x-2">
           <button 
-            className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded text-sm transition-colors group" 
+            className="bg-gray-700 hover:bg-gray-600 text-white p-1.5 md:p-2 rounded text-sm transition-colors group" 
             title="Ver no GitHub"
             onClick={(e) => {
               e.stopPropagation();
               onGitHubClick?.();
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" className="md:w-4 md:h-4" fill="currentColor">
               <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"></path>
             </svg>
           </button>
           <button 
-            className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded text-sm transition-colors group" 
+            className="bg-gray-700 hover:bg-gray-600 text-white p-1.5 md:p-2 rounded text-sm transition-colors group" 
             title="Ver Demo"
             onClick={(e) => {
               e.stopPropagation();
               onDemoClick?.();
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" className="md:w-4 md:h-4" fill="currentColor">
               <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L15 7.5V9.5H13V3H21ZM19 5H15V6.5L19 10V5Z"></path>
             </svg>
           </button>

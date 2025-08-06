@@ -42,7 +42,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({
 
   return (
     <AnimatedElement delay={0.1} animation="fade-in-up">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}

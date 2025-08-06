@@ -8,6 +8,7 @@ export {
   ProjectFilters,
   ProjectGrid,
   ProjectCard,
+  ProjectCarousel,
   ProjectSkillsSidebar,
   ProjectDetailsSidebar
 } from './projetos';
