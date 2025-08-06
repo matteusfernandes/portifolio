@@ -6,7 +6,7 @@ import { TypewriterText } from '@/components/TypewriterText';
 import { AnimatedElement } from '@/components/AnimatedElement';
 import { ContactForm, SuccessMessage, VSCodePreview } from '@/components/contact';
 import { useContactPage } from '@/hooks/contact';
-import { CONTACT_INFO } from '@/constants/contact';
+import { CONTACT_INFO, SOCIAL_INFO } from '@/constants/contact';
 import { ContactInfo } from '@/types/contact';
 
 export default function ContatoPage() {
@@ -48,7 +48,7 @@ export default function ContatoPage() {
             {/* Contact Info Section */}
             <div className="border-b border-gray-600 p-4">
               <div className="space-y-3">
-                {CONTACT_INFO.slice(0, 2).map((info: ContactInfo, index: number) => (
+                {CONTACT_INFO.map((info: ContactInfo, index: number) => (
                   <div key={index} className="flex items-center space-x-2">
                     <span>{info.icon}</span>
                     {info.link ? (
@@ -64,9 +64,14 @@ export default function ContatoPage() {
             </div>
 
             {/* Social Links */}
+            <div className="border-b border-gray-600">
+              <div className="flex items-center justify-center py-4">
+                <span className="text-light-gray text-sm" style={{ fontSize: '15px' }}>_redes-sociais</span>
+              </div>
+            </div>
             <div className="border-b border-gray-600 p-4">
               <div className="space-y-3">
-                {CONTACT_INFO.slice(2).map((info: ContactInfo, index: number) => (
+                {SOCIAL_INFO.map((info: ContactInfo, index: number) => (
                   <div key={index} className="flex items-center gap-3 text-sm">
                     <span>{info.icon}</span>
                     {info.link ? (
@@ -142,11 +147,7 @@ export default function ContatoPage() {
 
           {/* Right Sidebar - Live Code Snippet */}
           <div className="flex flex-col min-h-screen" style={{ width: '40%' }}>
-            <div className="flex-1 p-4 overflow-auto">
-              <div className="bg-[#1e1e1e] rounded-lg overflow-hidden border border-gray-600">
-                <VSCodePreview formData={formData} />
-              </div>
-            </div>
+            <VSCodePreview formData={formData} />
           </div>
         </div>
 
@@ -178,6 +179,34 @@ export default function ContatoPage() {
                 <h3 className="text-white font-fira-code text-lg mb-4">_informações</h3>
                 <div className="grid grid-cols-1 gap-3">
                   {CONTACT_INFO.map((info: ContactInfo, index: number) => (
+                    <div key={index} className="bg-dark-blue/30 border border-gray-600/50 rounded-lg p-4 hover:bg-dark-blue/40 transition-colors">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
+                          <span className="text-lg">{info.icon}</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-light-gray font-fira-code text-xs mb-1">
+                            {info.label}
+                          </div>
+                          {info.link ? (
+                            <a
+                              href={info.link}
+                              target={info.link.startsWith('http') ? '_blank' : '_self'}
+                              rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                              className="text-white hover:text-accent transition-colors font-fira-code text-xs break-all"
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <span className="text-white font-fira-code text-xs">
+                              {info.value}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {SOCIAL_INFO.map((info: ContactInfo, index: number) => (
                     <div key={index} className="bg-dark-blue/30 border border-gray-600/50 rounded-lg p-4 hover:bg-dark-blue/40 transition-colors">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">

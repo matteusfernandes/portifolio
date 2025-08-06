@@ -8,6 +8,14 @@ export const CONTACT_INFO: ContactInfo[] = [
     icon: '📧'
   },
   {
+    label: '_telefone',
+    value: '+55 (77) 99109-9699',
+    icon: '📞'
+  }
+];
+
+export const SOCIAL_INFO: ContactInfo[] = [
+  {
     label: '_linkedin',
     value: 'linkedin.com/in/matteusfernandes',
     link: 'https://linkedin.com/in/matteusfernandes',
@@ -20,9 +28,10 @@ export const CONTACT_INFO: ContactInfo[] = [
     icon: '🔗'
   },
   {
-    label: '_telefone',
-    value: '+55 (77) 99109-9699',
-    icon: '📱'
+    label: '_instagram',
+    value: 'instagram.com/matteusfernandes',
+    link: 'https://instagram.com/matteusfernandes',
+    icon: '📸'
   }
 ];
 
