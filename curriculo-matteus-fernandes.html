@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Matteus Fernandes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #00d9ff;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00d9ff, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+        }
+        
+        .contact-item a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #00d9ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-icon {
+            font-size: 1.1rem;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00d9ff;
+            margin-bottom: 25px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-category {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #0ea5e9;
+        }
+        
+        .skill-category h4 {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #00d9ff, #0ea5e9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .project {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+        
+        .project-tech {
+            font-size: 0.85rem;
+            color: #0ea5e9;
+            font-weight: 500;
+        }
+        
+        .project-category {
+            background: #00d9ff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        
+        .project-skill {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .experience-item {
+            margin-bottom: 20px;
+        }
+        
+        .experience-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .experience-details {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .experience-description {
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #00d9ff, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                font-size: 12px;
+            }
+            .section {
+                margin-bottom: 20px;
+            }
+            .project {
+                break-inside: avoid;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Matteus Fernandes</h1>
+        <p class="subtitle">Desenvolvedor Full Stack</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📧</span>
+                <a href="mailto:matteus_gbi@hotmail.com">matteus_gbi@hotmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span>📞</span>
+                <span>+55 (77) 99109-9699</span>
+            </div>
+            <div class="contact-item">
+                <span>💼</span>
+                <a href="https://linkedin.com/in/matteusfernandes">linkedin.com/in/matteusfernandes</a>
+            </div>
+            <div class="contact-item">
+                <span>🔗</span>
+                <a href="https://github.com/matteusfernandes">github.com/matteusfernandes</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <div class="summary">
+        <h3 class="section-title">
+            <span class="section-icon">👨‍💻</span>
+            Resumo Profissional
+        </h3>
+        <p>
+            <strong class="highlight">Desenvolvedor Full Stack</strong> especializado em tecnologias modernas como 
+            <strong>Next.js 15, Node.js, TypeScript, MongoDB e Docker</strong>. 
+            Experiência sólida em arquitetura de aplicações escaláveis, APIs RESTful robustas, 
+            e metodologias ágeis. Focado em <strong>clean code</strong>, performance e experiência do usuário. 
+            Histórico comprovado de modernização de aplicações legacy e implementação de soluções completas 
+            do front-end ao back-end, incluindo containerização e deploy automatizado.
+        </p>
+    </div>
+
+    <!-- Technical Skills -->
+    <section class="section">
+        <h3 class="section-title">
+            <span class="section-icon">🛠️</span>
+            Competências Técnicas
+        </h3>
+        
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Frontend</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">Next.js 15</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">HTML5</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Backend</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">API RESTful</span>
+                    <span class="skill-tag">JWT</span>
+                    <span class="skill-tag">Middleware</span>
+                    <span class="skill-tag">MSC Architecture</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Database</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Prisma ORM</span>
+                    <span class="skill-tag">Sequelize</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h4>DevOps & Tools</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Docker Compose</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Vercel</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Metodologias</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">TDD</span>
+                    <span class="skill-tag">Clean Code</span>
+                    <span class="skill-tag">SOLID</span>
+                    <span class="skill-tag">Agile</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Outros</h4>
+                <div class="skill-list">
+                    <span class="skill-tag">Context API</span>
+                    <span class="skill-tag">Zustand</span>
+                    <span class="skill-tag">NextAuth.js</span>
+                    <span class="skill-tag">React Query</span>
+                    <span class="skill-tag">Chart.js</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Projects -->
+    <section class="section">
+        <h3 class="section-title">
+            <span class="section-icon">🚀</span>
+            Principais Projetos
+        </h3>
+        
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">App Delivery</div>
+                    <div class="project-tech">Next.js 15 & MongoDB</div>
+                </div>
+                <div class="project-category">Full-Stack</div>
+            </div>
+            <p class="project-description">
+                Sistema completo de delivery modernizado com Next.js 15 e MongoDB, incluindo autenticação multi-role, 
+                carrinho inteligente, dashboard administrativo e processo de checkout otimizado. 
+                Migração completa de aplicação legacy React+MySQL.
+            </p>
+            <div class="project-skills">
+                <span class="project-skill">Next.js 15</span>
+                <span class="project-skill">TypeScript</span>
+                <span class="project-skill">MongoDB</span>
+                <span class="project-skill">Prisma ORM</span>
+                <span class="project-skill">NextAuth.js</span>
+                <span class="project-skill">Tailwind CSS</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Library App</div>
+                    <div class="project-tech">Next.js 15 & MySQL</div>
+                </div>
+                <div class="project-category">Full-Stack</div>
+            </div>
+            <p class="project-description">
+                Sistema completo de gerenciamento de biblioteca com API RESTful robusta, frontend moderno, 
+                containerização Docker e cobertura completa de testes. Desenvolvido como desafio técnico 
+                seguindo metodologia TDD.
+            </p>
+            <div class="project-skills">
+                <span class="project-skill">Node.js</span>
+                <span class="project-skill">Express</span>
+                <span class="project-skill">MySQL</span>
+                <span class="project-skill">Docker</span>
+                <span class="project-skill">TDD</span>
+                <span class="project-skill">Sequelize</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Trybe Wallet</div>
+                    <div class="project-tech">Next.js 15 & Zustand</div>
+                </div>
+                <div class="project-category">Frontend</div>
+            </div>
+            <p class="project-description">
+                Carteira financeira modernizada com conversor de moedas em tempo real, categorização inteligente 
+                de despesas e dashboard com gráficos interativos. Refatoração completa de Redux para Zustand.
+            </p>
+            <div class="project-skills">
+                <span class="project-skill">Zustand</span>
+                <span class="project-skill">API Integration</span>
+                <span class="project-skill">React Query</span>
+                <span class="project-skill">Chart.js</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Docker To-Do List</div>
+                    <div class="project-tech">Next.js & Docker</div>
+                </div>
+                <div class="project-category">DevOps</div>
+            </div>
+            <p class="project-description">
+                Aplicação completamente containerizada com Docker e Docker Compose, incluindo pipeline de CI/CD, 
+                deploy automatizado e configuração multi-stage para desenvolvimento e produção.
+            </p>
+            <div class="project-skills">
+                <span class="project-skill">Docker Compose</span>
+                <span class="project-skill">CI/CD</span>
+                <span class="project-skill">Multi-stage builds</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-header">
+                <div>
+                    <div class="project-title">Store Manager API</div>
+                    <div class="project-tech">Node.js & MySQL</div>
+                </div>
+                <div class="project-category">Backend</div>
+            </div>
+            <p class="project-description">
+                API RESTful robusta para e-commerce com arquitetura MSC bem estruturada, validações completas, 
+                middlewares customizados e integração com MySQL seguindo princípios SOLID.
+            </p>
+            <div class="project-skills">
+                <span class="project-skill">MSC Architecture</span>
+                <span class="project-skill">RESTful API</span>
+                <span class="project-skill">SOLID Principles</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Experience -->
+    <section class="section">
+        <h3 class="section-title">
+            <span class="section-icon">💼</span>
+            Experiência Técnica
+        </h3>
+        
+        <div class="experience-item">
+            <div class="experience-title">Desenvolvedor Full Stack - Projetos Pessoais</div>
+            <div class="experience-details">2023 - Presente</div>
+            <div class="experience-description">
+                • Desenvolvimento de aplicações completas utilizando Next.js 15, Node.js e bancos de dados relacionais e não-relacionais<br>
+                • Implementação de arquiteturas escaláveis com foco em performance e experiência do usuário<br>
+                • Modernização de aplicações legacy aplicando melhores práticas de desenvolvimento<br>
+                • Containerização de aplicações com Docker e implementação de pipelines CI/CD<br>
+                • Trabalho com metodologias ágeis e desenvolvimento orientado a testes (TDD)
+            </div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="experience-title">Especialização em Tecnologias Modernas</div>
+            <div class="experience-details">Competências Desenvolvidas</div>
+            <div class="experience-description">
+                • <strong>Frontend:</strong> Migração de aplicações para Next.js 15, implementação de state management moderno (Zustand, Context API)<br>
+                • <strong>Backend:</strong> Desenvolvimento de APIs RESTful robustas, arquitetura MSC, autenticação JWT<br>
+                • <strong>Database:</strong> Integração com MongoDB Atlas, MySQL, ORMs (Prisma, Sequelize)<br>
+                • <strong>DevOps:</strong> Containerização completa, deploy automatizado, configuração de ambientes multi-stage
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="section">
+        <h3 class="section-title">
+            <span class="section-icon">🎓</span>
+            Formação & Certificações
+        </h3>
+        
+        <div class="two-column">
+            <div>
+                <div class="experience-item">
+                    <div class="experience-title">Desenvolvimento Web Full Stack</div>
+                    <div class="experience-details">Formação Especializada</div>
+                    <div class="experience-description">
+                        Formação completa abrangendo desenvolvimento frontend e backend, 
+                        com foco em tecnologias modernas e metodologias ágeis.
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="experience-item">
+                    <div class="experience-title">Tecnologias Estudadas</div>
+                    <div class="experience-details">Aprendizado Contínuo</div>
+                    <div class="experience-description">
+                        Atualização constante em tecnologias emergentes como Next.js 15, 
+                        containerização com Docker e práticas de DevOps modernas.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information -->
+    <section class="section">
+        <h3 class="section-title">
+            <span class="section-icon">✨</span>
+            Informações Adicionais
+        </h3>
+        
+        <div class="two-column">
+            <div>
+                <h4 style="margin-bottom: 8px; color: #1a1a1a;">Diferenciais</h4>
+                <ul style="color: #555; font-size: 0.9rem; line-height: 1.8;">
+                    <li>Foco em clean code e boas práticas</li>
+                    <li>Experiência em modernização de sistemas legacy</li>
+                    <li>Conhecimento em arquiteturas escaláveis</li>
+                    <li>Implementação de CI/CD e DevOps</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 style="margin-bottom: 8px; color: #1a1a1a;">Idiomas</h4>
+                <ul style="color: #555; font-size: 0.9rem; line-height: 1.8;">
+                    <li>Português - Nativo</li>
+                    <li>Inglês - Técnico (Leitura/Escrita)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
