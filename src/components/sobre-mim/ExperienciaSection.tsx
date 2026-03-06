@@ -53,8 +53,8 @@ export const ExperienciaSection: FileItem[] = [
                         Ver Site
                       </a>
                     </div>
-                    <p className="text-light-gray text-xs mb-1">Freelancer • 2024 - Presente</p>
-                    <p className="text-gray-300">Desenvolvi e mantenho o site Bemtevi, entregando soluções personalizadas em design e funcionalidade.<br />Utilizei WordPress como CMS, implementando temas e plugins customizados, além de desenvolver em PHP para atender às necessidades específicas do cliente, com foco na experiência do usuário e na eficiência técnica.</p>
+                    <p className="text-light-gray text-xs mb-1">Freelancer • 2024 - 2026</p>
+                    <p className="text-gray-300">Desenvolvi e mantive o site Bemtevi, entregando soluções personalizadas em design e funcionalidade.<br />Utilizei WordPress como CMS, implementando temas e plugins customizados, além de desenvolver em PHP para atender às necessidades específicas do cliente, com foco na experiência do usuário e na eficiência técnica.</p>
                     <div className="mt-2 flex flex-wrap gap-1">
                       <span className="bg-purple text-xs px-2 py-1 rounded">WordPress</span>
                       <span className="bg-purple text-xs px-2 py-1 rounded">HTML</span>
@@ -75,6 +75,91 @@ export const ExperienciaSection: FileItem[] = [
 
               <div className="mb-6">
                 <h3 className="text-light-gray text-sm mb-3">{`//Outras Experiências`}</h3>
+
+                <div className="text-gray-300 text-sm space-y-2 mt-4">
+                  <div className="bg-gray-800 p-4 rounded-lg">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                        <p className="text-green-400 text-sm font-medium">CRM Loteamentos - Módulo de Cobranças (FHS Advogados Associados)</p>
+                      </div>
+                        <a 
+                          href="https://crmfhsadvogados.vercel.app" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                        >
+                          Ver Site
+                        </a>
+                    </div>
+                    <p className="text-light-gray text-xs mb-1">Freelancer • 02/2026</p>
+                    <p className="text-gray-300">Projetei e implementei um módulo completo de gestão de cobranças integrado ao CRM, abrangendo toda a stack desde a modelagem do banco de dados até a interface do usuário. Desenvolvi 9 migrations SQL com triggers automáticos, 11 índices otimizados e functions para cálculos financeiros (multa e juros). Criei sistema inteligente de classificação de risco por faixas (A/B/C/D) baseado em dias de atraso, fluxo sequencial de ações de cobrança com 7 etapas configuráveis, gestão de parcelas com quitação individual ou em lote, e histórico imutável de todas as ações. Implementei camada de serviços com hooks React customizados, validações de negócio robustas, integração completa com o módulo de atendimentos e interface responsiva com filtros avançados e dashboards financeiros.</p>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">TypeScript</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">Supabase</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">PostgreSQL</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">Tailwind</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-gray-300 text-sm space-y-2 mt-4">
+                  <div className="bg-gray-800 p-4 rounded-lg">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                        <p className="text-green-400 text-sm font-medium">CRM Loteamentos - Sistema Completo (FHS Advogados Associados)</p>
+                      </div>
+                        <a 
+                          href="https://crmfhsadvogados.vercel.app" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                        >
+                          Ver Site
+                        </a>
+                    </div>
+                    <p className="text-light-gray text-xs mb-1">Freelancer • 01/2026</p>
+                    <p className="text-gray-300">Fui responsável pelo desenvolvimento full-stack do CRM Loteamentos para FHS Advogados Associados, construindo uma plataforma completa de gestão de atendimentos e relacionamento com clientes. Implementei toda a arquitetura utilizando Next.js 15, TypeScript e Supabase (PostgreSQL), incluindo sistema de autenticação, dashboard com métricas em tempo real, gestão de clientes com histórico completo, módulo administrativo com CRUD de tabelas de referência, sistema de notificações, políticas de segurança com Row Level Security (RLS) e permissões por setor. Desenvolvi também o sistema de logs administrativos para auditoria e realizei o deploy completo da aplicação.</p>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">TypeScript</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">Supabase</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">PostgreSQL</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">Tailwind</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-gray-300 text-sm space-y-2 mt-4">
+                  <div className="bg-gray-800 p-4 rounded-lg">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="text-white font-semibold">Desenvolvedor Full Stack</h4>
+                        <p className="text-green-400 text-sm font-medium">Shaping Sabin</p>
+                      </div>
+                        <a 
+                          href="https://www.sabinshaping.com" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                        >
+                          Ver Site
+                        </a>
+                    </div>
+                    <p className="text-light-gray text-xs mb-1">Freelancer • 09/2025</p>
+                    <p className="text-gray-300">Foquei na manutenção contínua da plataforma Shaping Sabin, garantindo seu bom funcionamento, corrigindo eventuais falhas e implementando melhorias para otimizar ainda mais a experiência dos usuários e a eficiência na organização de projetos escolares.</p>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      <span className="bg-purple text-xs px-2 py-1 rounded">NextJS</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">JavaScript</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">NodeJS</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">MySql</span>
+                      <span className="bg-purple text-xs px-2 py-1 rounded">Sequelize</span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="text-gray-300 text-sm space-y-2 mt-4">
                   <div className="bg-gray-800 p-4 rounded-lg">
                     <div className="flex justify-between items-start mb-2">
